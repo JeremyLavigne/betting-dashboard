@@ -1,0 +1,21 @@
+{
+  "name": "betdash",
+  "version": "1.0.0",
+  "description": "betting dashboard",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [
+    "betting"
+  ],
+  "author": "Jeremy Lavigne",
+  "license": "ISC",
+  "dependencies": {
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
+  },
+  "devDependencies": {
+    "typescript": "^4.1.3"
+  }
+}
