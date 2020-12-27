@@ -29,6 +29,7 @@
         "no-use-before-define": "off",
         "@typescript-eslint/no-use-before-define": ["error"],
         "no-console": "off",
+        "indent": ["error", 4],
         "react/jsx-filename-extension": [0, { "extensions": [".js", ".jsx"] }] // 0 -> off
     },
     "settings": {
