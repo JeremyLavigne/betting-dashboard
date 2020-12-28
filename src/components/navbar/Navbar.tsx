@@ -1,13 +1,34 @@
 import React from 'react';
 
-const Navbar: React.FC = (): JSX.Element => {
-    console.log('navbar');
+import Button from '../button/Button';
 
+import './Navbar.css';
+
+interface NavbarProps {
+    listOfChampionship: Array<string>;
+}
+
+const Navbar: React.FC<NavbarProps> = ({ listOfChampionship }): JSX.Element => {
+    console.log('nav');
     return (
-        <div>
-            <p>I am a navbar</p>
-        </div>
+        <nav>
+            {listOfChampionship.map((champ: string) => (
+                <li key={champ}>{champ}</li>
+            ))}
+            <Button
+                color="primary"
+                onClick={() => {
+                    console.log('click');
+                }}
+            >
+                Test
+            </Button>
+        </nav>
     );
+};
+
+Navbar.defaultProps = {
+    listOfChampionship: ['Championship 1'],
 };
 
 export default Navbar;

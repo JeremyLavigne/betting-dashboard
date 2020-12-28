@@ -27,7 +27,6 @@ const config: webpack.Configuration = {
             },
             {
                 test: /\.(png|svg|jpg|jpeg|gif)$/i,
-                type: 'asset/resource',
                 use: [
                     {
                         loader: 'url-loader',
@@ -46,7 +45,7 @@ const config: webpack.Configuration = {
     devServer: {
         contentBase: path.join(__dirname, 'build'),
         compress: true,
-        port: 4000,
+        port: 3000,
     },
     performance: {
         hints: false,

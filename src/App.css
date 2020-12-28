@@ -1,3 +1,6 @@
 body {
     background-image: url('./assets/images/tavla.jpg');
+    color: white;
+    margin: 0;
+    padding: 0;
 }
