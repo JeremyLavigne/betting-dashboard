@@ -21,6 +21,19 @@ const config: webpack.Configuration = {
                 enforce: 'pre',
                 use: ['source-map-loader'],
             },
+            {
+                test: /\.css$/i,
+                use: ['style-loader', 'css-loader'],
+            },
+            {
+                test: /\.(png|svg|jpg|jpeg|gif)$/i,
+                type: 'asset/resource',
+                use: [
+                    {
+                        loader: 'url-loader',
+                    },
+                ],
+            },
         ],
     },
     resolve: {
@@ -42,7 +55,7 @@ const config: webpack.Configuration = {
         new ForkTsCheckerWebpackPlugin({
             async: false,
             eslint: {
-                files: './src/**/*',
+                files: './src/**/*.tsx',
             },
         }),
     ],
