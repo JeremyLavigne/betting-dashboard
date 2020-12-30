@@ -70,3 +70,26 @@ export interface MatchWithPpsResults {
     oddH: number;
     ppsResult: string;
 }
+
+// Extraction Step 3 - Match Number
+export interface MatchWithMatchNumber {
+    id: string;
+    homeTeam: string;
+    awayTeam: string;
+    date: Date;
+    homeTeamGoalsFor: number;
+    awayTeamGoalsFor: number;
+    homeTeamGoalsAgainst: number;
+    awayTeamGoalsAgainst: number;
+    result: string;
+    homeTeamShotsOnTarget: number;
+    awayTeamShotsOnTarget: number;
+    homeTeamCorner: number;
+    awayTeamCorner: number;
+    homeTeamShotsOff: number;
+    awayTeamShotsOff: number;
+    oddH: number;
+    ppsResult: string;
+    homeTeamMatchNumber: number;
+    awayTeamMatchNumber: number;
+}
