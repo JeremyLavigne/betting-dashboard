@@ -6,7 +6,7 @@ import getNextMatches from '../../utils/scraping/nextM';
 import getPreviousMatches from '../../utils/scraping/previousM';
 import extendsData from '../../utils/extraction/extends-data';
 
-import { Match, MatchWithRenamedProps } from '../../ts/app_types';
+import { Match } from '../../ts/app_types';
 
 const Home: React.FC = (): JSX.Element => {
     const [nextMatches, setNextMatches] = useState<Array<Match>>([]);

@@ -49,3 +49,24 @@ export interface MatchWithRenamedProps {
     awayTeamShotsOff: number;
     oddH: number;
 }
+
+// Extraction Step 2 - Pps Result
+export interface MatchWithPpsResults {
+    id: string;
+    homeTeam: string;
+    awayTeam: string;
+    date: Date;
+    homeTeamGoalsFor: number;
+    awayTeamGoalsFor: number;
+    homeTeamGoalsAgainst: number;
+    awayTeamGoalsAgainst: number;
+    result: string;
+    homeTeamShotsOnTarget: number;
+    awayTeamShotsOnTarget: number;
+    homeTeamCorner: number;
+    awayTeamCorner: number;
+    homeTeamShotsOff: number;
+    awayTeamShotsOff: number;
+    oddH: number;
+    ppsResult: string;
+}

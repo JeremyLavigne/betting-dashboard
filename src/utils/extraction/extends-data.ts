@@ -1,16 +1,21 @@
-import { MatchPlayed, MatchWithRenamedProps } from '../../ts/app_types';
+// ==============================================================================
+// === For more info on all of this - see https://github.com/JeremyLavigne/ratios-extractor
+// ==============================================================================
+
+import { MatchPlayed, MatchWithPpsResults } from '../../ts/app_types';
 
 import renameProperties from './helpers/renameProperties';
+import ppsResults from './helpers/ppsResults';
 
-const extendsData = (championship: string, season: string, db: Array<MatchPlayed>): Array<MatchWithRenamedProps> => {
+const extendsData = (championship: string, season: string, db: Array<MatchPlayed>): Array<MatchWithPpsResults> => {
     // Create new db
-    const newDb: Array<MatchWithRenamedProps> = [];
+    const newDb: Array<MatchWithPpsResults> = [];
 
     // Fill it using old one
     // for (let i = 0; i < db.length; i += 1) {
     db.forEach((match, i) => {
-        const newMatch = renameProperties(match, i, championship, season);
-        // newMatch = ppsResults(newMatch);
+        const matchWithRenamedProps = renameProperties(match, i, championship, season);
+        const matchWithPpsResults = ppsResults(matchWithRenamedProps);
         // newMatch = addMatchNumber(newMatch, newDb, i);
 
         // const {
@@ -43,7 +48,7 @@ const extendsData = (championship: string, season: string, db: Array<MatchPlayed
         // newMatch = powerRatingAdjustment(newMatch);
 
         // Finally save new object into newDB
-        newDb.push(newMatch);
+        newDb.push(matchWithPpsResults);
     });
 
     return newDb;
