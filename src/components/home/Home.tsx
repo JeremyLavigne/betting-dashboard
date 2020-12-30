@@ -2,18 +2,22 @@ import React, { useState } from 'react';
 
 import Button from '../button/Button';
 
-import nextM from '../../utils/nextM';
-import previousM from '../../utils/previousM';
+import getNextMatches from '../../utils/scraping/nextM';
+import getPreviousMatches from '../../utils/scraping/previousM';
+import extendsData from '../../utils/extraction/extends-data';
 
-import { Match, MatchPlayed } from '../../ts/app_types';
+import { Match, MatchWithRenamedProps } from '../../ts/app_types';
 
 const Home: React.FC = (): JSX.Element => {
     const [nextMatches, setNextMatches] = useState<Array<Match>>([]);
-    const [previousMatches, setPreviousMatches] = useState<Array<MatchPlayed>>([]);
+    // const [previousMatches, setPreviousMatches] = useState<Array<MatchWithRenamedProps>>([]);
 
     const handleScrap = () => {
-        nextM('https://www.betexplorer.com/soccer/england/premier-league/').then((res) => setNextMatches(res));
-        previousM('https://www.football-data.co.uk/mmz4281/2021/E0.csv').then((res) => setPreviousMatches(res));
+        // getNextMatches('https://www.betexplorer.com/soccer/england/premier-league/').then((res) => setNextMatches(res));
+        getPreviousMatches('https://www.football-data.co.uk/mmz4281/2021/E0.csv').then((res) => {
+            const transformedData = extendsData('PL', '20192020', res);
+            console.log(transformedData[100]);
+        });
     };
 
     return (
@@ -27,14 +31,6 @@ const Home: React.FC = (): JSX.Element => {
                 {nextMatches.map((match) => (
                     <li key={`${match.homeTeam}-${match.date}`}>
                         {match.date} - {match.homeTeam} vs {match.awayTeam}: {match.oddH}/{match.oddD}/{match.oddA}
-                    </li>
-                ))}
-            </div>
-            <div>
-                <h3>Previous Matches</h3>
-                {previousMatches.map((match) => (
-                    <li key={`${match.HomeTeam}-${match.Date}`}>
-                        {match.Date} - {match.HomeTeam} vs {match.AwayTeam}: {match.FTHG} - {match.FTAG}
                     </li>
                 ))}
             </div>

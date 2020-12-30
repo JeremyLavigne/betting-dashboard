@@ -9,6 +9,7 @@ export interface Match {
 }
 
 // Object type when scraping in Football-data.co.uk for previous matches
+// Take a little more than needed (Over/Under stuff for example) - can be useful
 export interface MatchPlayed {
     Date: string;
     HomeTeam: string;
@@ -27,4 +28,24 @@ export interface MatchPlayed {
     BbAvA: number;
     'BbAv>2.5': number;
     'BbAv<2.5': number;
+}
+
+// Extraction Step 1 - Rename Props
+export interface MatchWithRenamedProps {
+    id: string;
+    homeTeam: string;
+    awayTeam: string;
+    date: Date;
+    homeTeamGoalsFor: number;
+    awayTeamGoalsFor: number;
+    homeTeamGoalsAgainst: number;
+    awayTeamGoalsAgainst: number;
+    result: string;
+    homeTeamShotsOnTarget: number;
+    awayTeamShotsOnTarget: number;
+    homeTeamCorner: number;
+    awayTeamCorner: number;
+    homeTeamShotsOff: number;
+    awayTeamShotsOff: number;
+    oddH: number;
 }
