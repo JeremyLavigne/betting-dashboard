@@ -13,7 +13,7 @@ const Home: React.FC = (): JSX.Element => {
     // const [previousMatches, setPreviousMatches] = useState<Array<MatchWithRenamedProps>>([]);
 
     const handleScrap = () => {
-        // getNextMatches('https://www.betexplorer.com/soccer/england/premier-league/').then((res) => setNextMatches(res));
+        getNextMatches('https://www.betexplorer.com/soccer/england/premier-league/').then((res) => setNextMatches(res));
         getPreviousMatches('https://www.football-data.co.uk/mmz4281/2021/E0.csv').then((res) => {
             const transformedData = extendsData('PL', '20192020', res);
             console.log(transformedData[100]);
