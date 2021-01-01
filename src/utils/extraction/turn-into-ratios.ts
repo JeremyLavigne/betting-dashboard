@@ -44,7 +44,6 @@ const turnIntoRatio = (
 
         const s7 = homeTeamPowerRating - awayTeamPowerRating;
 
-        console.log(homeTeamMatchNumber, awayTeamMatchNumber, homeTeamPpsPointsTotal, awayTeamPpsPointsTotal);
         const s9 =
             homeTeamPpsPointsTotal / (homeTeamMatchNumber - 1) - awayTeamPpsPointsTotal / (awayTeamMatchNumber - 1);
 
