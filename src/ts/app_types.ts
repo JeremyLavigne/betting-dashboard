@@ -1,17 +1,30 @@
 // Object type when scraping in Betexplorer for upcoming matches
 export interface Match {
-    homeTeam: string | undefined;
-    awayTeam: string | undefined;
+    homeTeam: string;
+    awayTeam: string;
     date: string | undefined;
     oddH: string | undefined;
     oddD: string | undefined;
     oddA: string | undefined;
 }
 
+// Object type for upcoming matches when adding ratios
+export interface MatchWithRatios {
+    date: Date;
+    homeTeam: string;
+    awayTeam: string;
+    s2GameFormRatio: number;
+    s7PowerRatingRatio: number;
+    s9PpsRatio: number;
+    oddH: number;
+    oddD: number;
+    oddA: number;
+}
+
 // Object type when scraping in Football-data.co.uk for previous matches
 // Take a little more than needed (Over/Under stuff for example) - can be useful
 export interface MatchPlayed {
-    Date: string;
+    Date: string | undefined;
     HomeTeam: string;
     AwayTeam: string;
     FTHG: number;
@@ -48,6 +61,8 @@ export interface MatchWithRenamedProps {
     homeTeamShotsOff: number;
     awayTeamShotsOff: number;
     oddH: number;
+    oddD: number;
+    oddA: number;
 }
 
 // Extraction Step 2 - Pps Result
@@ -68,6 +83,8 @@ export interface MatchWithPpsResults {
     homeTeamShotsOff: number;
     awayTeamShotsOff: number;
     oddH: number;
+    oddD: number;
+    oddA: number;
     ppsResult: string;
 }
 
@@ -89,6 +106,8 @@ export interface MatchWithMatchNumber {
     homeTeamShotsOff: number;
     awayTeamShotsOff: number;
     oddH: number;
+    oddD: number;
+    oddA: number;
     ppsResult: string;
     homeTeamMatchNumber: number;
     awayTeamMatchNumber: number;
@@ -120,6 +139,8 @@ export interface MatchWithPpsPoints {
     homeTeamShotsOff: number;
     awayTeamShotsOff: number;
     oddH: number;
+    oddD: number;
+    oddA: number;
     ppsResult: string;
     homeTeamMatchNumber: number;
     awayTeamMatchNumber: number;
@@ -145,6 +166,8 @@ export interface MatchWithGameFormPoints {
     homeTeamShotsOff: number;
     awayTeamShotsOff: number;
     oddH: number;
+    oddD: number;
+    oddA: number;
     ppsResult: string;
     homeTeamMatchNumber: number;
     awayTeamMatchNumber: number;
@@ -172,6 +195,8 @@ export interface MatchWithGameFormDiff {
     homeTeamShotsOff: number;
     awayTeamShotsOff: number;
     oddH: number;
+    oddD: number;
+    oddA: number;
     ppsResult: string;
     homeTeamMatchNumber: number;
     awayTeamMatchNumber: number;
@@ -201,6 +226,8 @@ export interface MatchWithPowerRating {
     homeTeamShotsOff: number;
     awayTeamShotsOff: number;
     oddH: number;
+    oddD: number;
+    oddA: number;
     ppsResult: string;
     homeTeamMatchNumber: number;
     awayTeamMatchNumber: number;
@@ -232,6 +259,8 @@ export interface MatchFull {
     homeTeamShotsOff: number;
     awayTeamShotsOff: number;
     oddH: number;
+    oddD: number;
+    oddA: number;
     ppsResult: string;
     homeTeamMatchNumber: number;
     awayTeamMatchNumber: number;

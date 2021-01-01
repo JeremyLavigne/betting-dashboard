@@ -1,49 +1,69 @@
-import { MatchFull } from '../../ts/app_types';
+import extendsData from './extends-data';
 
-const turnIntoRatio = (db: Array<MatchFull>) => {
-    // Create new db
-    const newDb = [];
+import { Match, MatchPlayed, MatchWithRatios } from '../../ts/app_types';
+import arrangeTypes from './helpers/arrangeTypes';
 
-    // Fill it using old one
-    for (let i = 0; i < db.length; i += 1) {
-        if (db[i].homeTeamMatchNumber >= 6 && db[i].awayTeamMatchNumber >= 6) {
-            const {
-                homeTeam,
-                awayTeam,
-                homeTeamGameFormPointsOn6,
-                awayTeamGameFormPointsOn6,
-                homeTeamPowerRating,
-                awayTeamPowerRating,
-                homeTeamPpsPointsTotal,
-                awayTeamPpsPointsTotal,
-                homeTeamMatchNumber,
-                awayTeamMatchNumber,
-                result,
-                oddH,
-            } = db[i];
+const turnIntoRatio = (
+    newMatches: Array<Match>,
+    oldMatches: Array<MatchPlayed>,
+    idIndicator: Array<string>,
+): Array<MatchWithRatios> => {
+    // Put new matches under same format, for convenience
+    // No matter if some data (Goals, corners, etc..) are wrong, because won't be used
+    const newMatchesWithArrangedType: Array<MatchPlayed> = arrangeTypes(newMatches);
 
-            const s2 = (homeTeamGameFormPointsOn6 - awayTeamGameFormPointsOn6) / 8;
+    // Add those matches to existing matches - it stays in date order
+    const allMatches = oldMatches.concat(newMatchesWithArrangedType);
 
-            const s7 = homeTeamPowerRating - awayTeamPowerRating;
+    // Need old matches to have the whole history and get ratios for new ones
+    const transformedMatches = extendsData(idIndicator[0], idIndicator[1], allMatches);
 
-            const s9 =
-                homeTeamPpsPointsTotal / (homeTeamMatchNumber - 1) - awayTeamPpsPointsTotal / (awayTeamMatchNumber - 1);
+    // No need to work with old ones anymore
+    const transformedNewMatches = transformedMatches.slice(oldMatches.length);
 
-            const newRatios = {
-                homeTeam,
-                awayTeam,
-                s2GameFormRatio: Math.round(s2 * 1000) / 1000,
-                s7PowerRatingRatio: Math.round(s7 * 1000) / 1000,
-                s9PpsRatio: Math.round(s9 * 1000) / 1000,
-                result,
-                oddH,
-            };
+    const newMatchesWithRatios = [];
+    for (let i = 0; i < transformedNewMatches.length; i += 1) {
+        const {
+            date,
+            homeTeam,
+            awayTeam,
+            homeTeamGameFormPointsOn6,
+            awayTeamGameFormPointsOn6,
+            homeTeamPowerRating,
+            awayTeamPowerRating,
+            homeTeamPpsPointsTotal,
+            awayTeamPpsPointsTotal,
+            homeTeamMatchNumber,
+            awayTeamMatchNumber,
+            oddH,
+            oddD,
+            oddA,
+        } = transformedNewMatches[i];
 
-            newDb.push(newRatios);
-        }
+        const s2 = (homeTeamGameFormPointsOn6 - awayTeamGameFormPointsOn6) / 8;
+
+        const s7 = homeTeamPowerRating - awayTeamPowerRating;
+
+        console.log(homeTeamMatchNumber, awayTeamMatchNumber, homeTeamPpsPointsTotal, awayTeamPpsPointsTotal);
+        const s9 =
+            homeTeamPpsPointsTotal / (homeTeamMatchNumber - 1) - awayTeamPpsPointsTotal / (awayTeamMatchNumber - 1);
+
+        const newMatchWithRatios = {
+            date,
+            homeTeam,
+            awayTeam,
+            s2GameFormRatio: Math.round(s2 * 1000) / 1000,
+            s7PowerRatingRatio: Math.round(s7 * 1000) / 1000,
+            s9PpsRatio: Math.round(s9 * 1000) / 1000,
+            oddH,
+            oddD,
+            oddA,
+        };
+
+        newMatchesWithRatios.push(newMatchWithRatios);
     }
 
-    return newDb;
+    return newMatchesWithRatios;
 };
 
 export default turnIntoRatio;
