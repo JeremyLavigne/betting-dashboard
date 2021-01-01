@@ -2,7 +2,7 @@
 // === For more info on all of this - see https://github.com/JeremyLavigne/ratios-extractor
 // ==============================================================================
 
-import { MatchPlayed, MatchWithMatchNumber } from '../../ts/app_types';
+import { MatchFull, MatchPlayed } from '../../ts/app_types';
 
 import renameProperties from './helpers/renameProperties';
 import ppsResults from './helpers/ppsResults';
@@ -14,12 +14,12 @@ import gameFormDiffOn6 from './helpers/gameFormDiffOn6';
 import powerRating from './helpers/powerRating';
 import powerRatingAdjustment from './helpers/powerRatingAdjustment';
 
-const extendsData = (championship: string, season: string, db: Array<MatchPlayed>): Array<MatchWithMatchNumber> => {
+const extendsData = (championship: string, season: string, db: Array<MatchPlayed>): Array<MatchFull> => {
     // Create new db
-    const newDb: Array<MatchWithMatchNumber> = [];
+    const newDb: Array<MatchFull> = [];
 
     // Fill it using old one
-    db.forEach((match, i) => {
+    db.forEach((match: MatchPlayed, i: number) => {
         const matchWithRenamedProps = renameProperties(match, i, championship, season);
         const matchWithPpsResults = ppsResults(matchWithRenamedProps);
         const matchWithMatchNumber = addMatchNumber(matchWithPpsResults, newDb, i);

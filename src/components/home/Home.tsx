@@ -4,21 +4,28 @@ import Button from '../button/Button';
 
 import getNextMatches from '../../utils/scraping/nextM';
 import getPreviousMatches from '../../utils/scraping/previousM';
-import extendsData from '../../utils/extraction/extends-data';
+import turnIntoRatio from '../../utils/extraction/turn-into-ratios';
+import getFairOdd from '../../utils/valuebet/getFairOdd';
 
-import { Match } from '../../ts/app_types';
+import { MatchWithFairOdd } from '../../ts/app_types';
 
 const Home: React.FC = (): JSX.Element => {
-    const [nextMatches, setNextMatches] = useState<Array<Match>>([]);
-    // const [previousMatches, setPreviousMatches] = useState<Array<MatchWithRenamedProps>>([]);
+    const [nextMatches, setNextMatches] = useState<Array<MatchWithFairOdd>>([]);
+    const urlForNewMatches = 'https://www.betexplorer.com/soccer/england/premier-league/';
+    const urlForOldMatches = 'https://www.football-data.co.uk/mmz4281/2021/E0.csv';
+    const idIndicator = ['PL', '20192020'];
 
     const handleScrap = () => {
-        getNextMatches('https://www.betexplorer.com/soccer/england/premier-league/').then((res) => setNextMatches(res));
-        getPreviousMatches('https://www.football-data.co.uk/mmz4281/2021/E0.csv').then((res) => {
-            const transformedData = extendsData('PL', '20192020', res);
-            console.log(transformedData[100]);
+        getPreviousMatches(urlForOldMatches).then((oldM) => {
+            getNextMatches(urlForNewMatches).then((newM) => {
+                const newMatchesWithRatios = turnIntoRatio(newM, oldM, idIndicator);
+                const newMatchesWithFairOdd = getFairOdd(newMatchesWithRatios, idIndicator[0]);
+                setNextMatches(newMatchesWithFairOdd);
+            });
         });
     };
+
+    console.log(nextMatches);
 
     return (
         <div>
@@ -29,8 +36,10 @@ const Home: React.FC = (): JSX.Element => {
             <div>
                 <h3>Next matches</h3>
                 {nextMatches.map((match) => (
-                    <li key={`${match.homeTeam}-${match.date}`}>
-                        {match.date} - {match.homeTeam} vs {match.awayTeam}: {match.oddH}/{match.oddD}/{match.oddA}
+                    <li key={`${match.homeTeam}-${match.date.toLocaleDateString()}`}>
+                        {match.date.toLocaleDateString()} - {match.homeTeam} vs {match.awayTeam}:{match.oddH}/
+                        {match.oddD}/{match.oddA}
+                        {match.fairOddH < match.oddH && 'Go for it'}
                     </li>
                 ))}
             </div>

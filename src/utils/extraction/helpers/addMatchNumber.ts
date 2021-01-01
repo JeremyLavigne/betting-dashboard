@@ -2,11 +2,11 @@
 // === Add Match Number to match object
 // ==============================================================================
 
-import { MatchWithMatchNumber, MatchWithPpsResults } from '../../../ts/app_types';
+import { MatchWithMatchNumber, MatchWithPpsResults, MatchFull } from '../../../ts/app_types';
 
 const getMatchNumber = (
     existingMatch: MatchWithPpsResults,
-    existingDb: Array<MatchWithMatchNumber>,
+    existingDb: Array<MatchFull>,
     index: number,
 ): MatchWithMatchNumber => {
     const { homeTeam, awayTeam } = existingMatch;
