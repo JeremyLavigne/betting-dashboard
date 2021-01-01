@@ -35,6 +35,24 @@ export interface MatchWithFairOdd {
     fairOddH: number;
 }
 
+// Adding Bet details (bet on ? & how many to bet)
+export interface MatchWithBetDetails {
+    date: Date;
+    homeTeam: string;
+    awayTeam: string;
+    s2GameFormRatio: number;
+    s7PowerRatingRatio: number;
+    s9PpsRatio: number;
+    oddH: number;
+    oddD: number;
+    oddA: number;
+    fairOddH: number;
+    betAmount: number;
+    betOn: boolean;
+}
+
+// ==================== Previous matches =================================
+
 // Object type when scraping in Football-data.co.uk for previous matches
 // Take a little more than needed (Over/Under stuff for example) - can be useful
 export interface MatchPlayed {
