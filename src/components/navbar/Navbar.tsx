@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import Button from '../button/Button';
 
@@ -13,7 +14,9 @@ const Navbar: React.FC<NavbarProps> = ({ listOfChampionship }): JSX.Element => {
     return (
         <nav>
             {listOfChampionship.map((champ: string) => (
-                <li key={champ}>{champ}</li>
+                <Link to="/champ" key={champ}>
+                    {champ}
+                </Link>
             ))}
             <Button
                 color="primary"
