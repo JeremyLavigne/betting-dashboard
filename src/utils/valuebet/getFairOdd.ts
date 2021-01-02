@@ -13,6 +13,7 @@ const getFairOdds = (matchesWithRatios: Array<MatchWithRatios>, champIndicator: 
     let predictS9 = (x: number): number => {
         return x;
     };
+
     if (champIndicator === 'PL') {
         predictS2 = (x: number) => {
             return 0.01 * x * x + 0.12 * x + 0.46;
@@ -22,6 +23,78 @@ const getFairOdds = (matchesWithRatios: Array<MatchWithRatios>, champIndicator: 
         };
         predictS9 = (x: number) => {
             return 0 * x * x + 0.12 * x + 0.47;
+        };
+    }
+
+    if (champIndicator === 'SP1') {
+        predictS2 = (x: number) => {
+            return 0.01 * x * x + 0.11 * x + 0.47;
+        };
+        predictS7 = (x: number) => {
+            return 0.01 * x * x + 0.14 * x + 0.49;
+        };
+        predictS9 = (x: number) => {
+            return 0.01 * x * x + 0.13 * x + 0.47;
+        };
+    }
+
+    if (champIndicator === 'SA') {
+        predictS2 = (x: number) => {
+            return 0.01 * x * x + 0.15 * x + 0.43;
+        };
+        predictS7 = (x: number) => {
+            return 0.01 * x * x + 0.16 * x + 0.44;
+        };
+        predictS9 = (x: number) => {
+            return 0 * x * x + 0.14 * x + 0.44;
+        };
+    }
+
+    if (champIndicator === 'L1') {
+        predictS2 = (x: number) => {
+            return 0.02 * x * x + 0.09 * x + 0.44;
+        };
+        predictS7 = (x: number) => {
+            return 0.01 * x * x + 0.16 * x + 0.46;
+        };
+        predictS9 = (x: number) => {
+            return 0.02 * x * x + 0.14 * x + 0.43;
+        };
+    }
+
+    if (champIndicator === 'B1') {
+        predictS2 = (x: number) => {
+            return 0 * x * x + 0.11 * x + 0.45;
+        };
+        predictS7 = (x: number) => {
+            return 0 * x * x + 0.14 * x + 0.45;
+        };
+        predictS9 = (x: number) => {
+            return -0.01 * x * x + 0.11 * x + 0.46;
+        };
+    }
+
+    if (champIndicator === 'LO') {
+        predictS2 = (x: number) => {
+            return 0.01 * x * x + 0.06 * x + 0.42;
+        };
+        predictS7 = (x: number) => {
+            return -0.01 * x * x + 0.11 * x + 0.44;
+        };
+        predictS9 = (x: number) => {
+            return -0.02 * x * x + 0.05 * x + 0.47;
+        };
+    }
+
+    if (champIndicator === 'LT') {
+        predictS2 = (x: number) => {
+            return 0.01 * x * x + 0.09 * x + 0.4;
+        };
+        predictS7 = (x: number) => {
+            return -0.02 * x * x + 0.09 * x + 0.44;
+        };
+        predictS9 = (x: number) => {
+            return 0.01 * x * x + 0.1 * x + 0.4;
         };
     }
 

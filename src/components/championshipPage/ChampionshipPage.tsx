@@ -33,6 +33,8 @@ const Navbar: React.FC<ChampionshipPageProps> = (props): JSX.Element => {
         });
     };
 
+    console.log(nextMatches);
+
     return (
         <div>
             <div>
