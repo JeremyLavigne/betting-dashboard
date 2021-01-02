@@ -1,37 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import Button from '../button/Button';
-
 import './Navbar.css';
 
-interface NavbarProps {
-    listOfChampionship: Array<string>;
-}
-
-const Navbar: React.FC<NavbarProps> = ({ listOfChampionship }): JSX.Element => {
-    console.log('nav');
+const Navbar: React.FC = (): JSX.Element => {
     return (
         <nav>
-            {listOfChampionship.map((champ: string) => (
-                <Link to="/champ" key={champ}>
-                    {champ}
-                </Link>
-            ))}
-            <Button
-                color="primary"
-                onClick={() => {
-                    console.log('click');
-                }}
-            >
-                Test
-            </Button>
+            <Link to="/premier-league">Premier League</Link>
+            <Link to="/liga">Liga</Link>
+            <Link to="/serie-a">Serie A</Link>
+            <Link to="/ligue-1">Ligue 1</Link>
+            <Link to="/bundesliga">Bundesliga</Link>
+            <Link to="/league-one">League One</Link>
+            <Link to="/league-two">League Two</Link>
         </nav>
     );
-};
-
-Navbar.defaultProps = {
-    listOfChampionship: ['Championship 1'],
 };
 
 export default Navbar;
