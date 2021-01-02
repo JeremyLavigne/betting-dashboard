@@ -30,7 +30,7 @@ const getMatches = async (url: string): Promise<Array<Match>> => {
     // Filter to remove unwanted data.
     const dates: Array<string | undefined> = [];
     $('.table-main--leaguefixtures .h-text-right')
-        .filter((i, el) => $(el).text() !== '\n')
+        .filter((i, el) => $(el).text() !== '\n' && !$(el).text().match('Live'))
         .each((i, el) => {
             dates.push($(el).text());
         });
