@@ -10,7 +10,7 @@ const renameProperties = (
     championship: string,
     season: string,
 ): MatchWithRenamedProps => {
-    // Received a date like that: 12/09/2020
+    // Received a date like that: 12/09/2020 or 12.09 18:00 or 'Today ..' or 'Tomorrow ...'
     const day = oldObject.Date?.substr(0, 2);
     const month = oldObject.Date?.substr(3, 2);
     const year = oldObject.Date?.substr(6, 4);
@@ -26,8 +26,10 @@ const renameProperties = (
         const tomorrow = new Date(today);
         tomorrow.setDate(tomorrow.getDate() + 1);
         dateRightFormat = tomorrow.toString();
-    } else {
+    } else if (year?.includes(':')) {
         dateRightFormat = `${month}/${day}/${year}`;
+    } else {
+        dateRightFormat = `${month}/${day}/${new Date().getFullYear()}`;
     }
 
     return {
