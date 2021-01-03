@@ -1,76 +1,30 @@
 import React from 'react';
 
-import MatchLine from '../matchLine/MatchLine';
-
 import './Home.css';
 
 const Home: React.FC = (): JSX.Element => {
-    const nextMatches = [
-        {
-            homeTeam: 'Team 1',
-            awayTeam: 'Team 2',
-            date: new Date('2021-01-03'),
-            oddH: 2,
-            oddD: 3,
-            oddA: 4,
-            betOn: true,
-            betAmount: 100,
-            s2GameFormRatio: 0,
-            s7PowerRatingRatio: 0,
-            s9PpsRatio: 0,
-            fairOddH: 2,
-        },
-        {
-            homeTeam: 'Team 3',
-            awayTeam: 'Team 4',
-            date: new Date('2021-01-05'),
-            oddH: 4,
-            oddD: 3,
-            oddA: 2,
-            betOn: false,
-            betAmount: 100,
-            s2GameFormRatio: 0,
-            s7PowerRatingRatio: 0,
-            s9PpsRatio: 0,
-            fairOddH: 2,
-        },
-        {
-            homeTeam: 'Team3',
-            awayTeam: 'Team 4',
-            date: new Date('2021-01-05'),
-            oddH: 4,
-            oddD: 3,
-            oddA: 2,
-            betOn: false,
-            betAmount: 100,
-            s2GameFormRatio: 0,
-            s7PowerRatingRatio: 0,
-            s9PpsRatio: 0,
-            fairOddH: 2,
-        },
-        {
-            homeTeam: 'Tam 3',
-            awayTeam: 'Team 4',
-            date: new Date('2021-01-05'),
-            oddH: 4,
-            oddD: 3,
-            oddA: 2,
-            betOn: false,
-            betAmount: 100,
-            s2GameFormRatio: 0,
-            s7PowerRatingRatio: 0,
-            s9PpsRatio: 0,
-            fairOddH: 2,
-        },
-    ];
-
     return (
         <div id="home_page">
-            <h1>Home Page!</h1>
-            <div className="justfortest" style={{ paddingLeft: '10px' }}>
-                {nextMatches.map((m) => {
-                    return <MatchLine key={`${m.homeTeam}-${m.date}`} match={m} />;
-                })}
+            <h1>Home</h1>
+            <div className="home_page_text">
+                <p>
+                    If you landed here, it probably means you clone the repo on Github, so, let´s say you deserve a
+                    little explanation.
+                </p>
+                <p>
+                    I like to think that it is possible to bet on football using a magic formula, based on statistics
+                    and maths. I searched this formula during a long time, for leasure more than for money.
+                </p>
+                <p>
+                    This webpage was made for personnal use, the concept is to open it every morning, see who is playing
+                    and where I should bet. Everything behind has been thought, prepared, considered, tested, etc. Only
+                    thing to do is follow the app and bet.
+                </p>
+                <p>
+                    The other purpose is to code and apply coding skills, this app is made with React, Typescript,
+                    Webpack.
+                </p>
+                <p>It is version 1.0.0, please do not expect too much for now :-)</p>
             </div>
         </div>
     );
