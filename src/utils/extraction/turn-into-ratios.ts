@@ -40,6 +40,10 @@ const turnIntoRatio = (
             oddA,
         } = transformedNewMatches[i];
 
+        if (Number.isNaN(oddH) || Number.isNaN(oddD) || Number.isNaN(oddA)) {
+            break; // Stop the loop when data become unuseful
+        }
+
         const s2 = (homeTeamGameFormPointsOn6 - awayTeamGameFormPointsOn6) / 8;
 
         const s7 = homeTeamPowerRating - awayTeamPowerRating;

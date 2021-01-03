@@ -1,0 +1,15 @@
+.championship_page {
+    width: 100%;
+}
+
+.championship_next_matches {
+    padding-left: var(--margin-md);
+}
+
+.championship_page h1 {
+    text-align: center;
+    background-color: grey;
+    font-size: var(--font-lg);
+    padding-top: var(--margin-md);
+    padding-bottom: var(--margin-md);
+}
