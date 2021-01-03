@@ -1,0 +1,25 @@
+#home_page {
+    width: 100%;
+}
+
+#home_page h1 {
+    text-align: center;
+    background-color: grey;
+    font-size: var(--font-lg);
+    padding-top: var(--margin-md);
+    padding-bottom: var(--margin-md);
+}
+
+.home_page_text {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    margin-top: var(--margin-xlg);
+}
+
+.home_page_text p {
+    width: 100%;
+}

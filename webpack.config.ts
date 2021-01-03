@@ -21,19 +21,33 @@ const config: webpack.Configuration = {
                 enforce: 'pre',
                 use: ['source-map-loader'],
             },
+            {
+                test: /\.css$/i,
+                use: ['style-loader', 'css-loader'],
+            },
+            {
+                test: /\.(png|svg|jpg|jpeg|gif)$/i,
+                use: [
+                    {
+                        loader: 'url-loader',
+                    },
+                ],
+            },
         ],
     },
     resolve: {
-        extensions: ['.tsx', '.ts', '.js'],
+        extensions: ['.tsx', '.ts', '.js', 'jsx'],
     },
     output: {
         path: path.resolve(__dirname, 'build'),
         filename: 'bundle.js',
+        publicPath: '/',
     },
     devServer: {
         contentBase: path.join(__dirname, 'build'),
         compress: true,
-        port: 4000,
+        port: 3000,
+        historyApiFallback: true,
     },
     performance: {
         hints: false,
@@ -42,7 +56,7 @@ const config: webpack.Configuration = {
         new ForkTsCheckerWebpackPlugin({
             async: false,
             eslint: {
-                files: './src/**/*',
+                files: './src/**/*.tsx',
             },
         }),
     ],
