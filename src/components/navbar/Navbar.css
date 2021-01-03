@@ -1,4 +1,14 @@
 nav {
-    background-color: brown;
-    padding: 10px;
+    background: var(--green);
+    padding: var(--margin-sm);
+    max-width: var(--menu-width);
+
+    display: flex;
+    flex-direction: column;
+}
+
+.menu_champ_link {
+    margin-top: var(--margin-sm);
+    color: var(--white);
+    text-decoration: none;
 }

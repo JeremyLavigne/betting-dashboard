@@ -6,13 +6,27 @@ import './Navbar.css';
 const Navbar: React.FC = (): JSX.Element => {
     return (
         <nav>
-            <Link to="/premier-league">Premier League</Link>
-            <Link to="/liga">Liga</Link>
-            <Link to="/serie-a">Serie A</Link>
-            <Link to="/ligue-1">Ligue 1</Link>
-            <Link to="/bundesliga">Bundesliga</Link>
-            <Link to="/league-one">League One</Link>
-            <Link to="/league-two">League Two</Link>
+            <Link className="menu_champ_link" to="/premier-league">
+                Premier League
+            </Link>
+            <Link className="menu_champ_link" to="/liga">
+                Liga
+            </Link>
+            <Link className="menu_champ_link" to="/serie-a">
+                Serie A
+            </Link>
+            <Link className="menu_champ_link" to="/ligue-1">
+                Ligue 1
+            </Link>
+            <Link className="menu_champ_link" to="/bundesliga">
+                Bundesliga
+            </Link>
+            <Link className="menu_champ_link" to="/league-one">
+                League One
+            </Link>
+            <Link className="menu_champ_link" to="/league-two">
+                League Two
+            </Link>
         </nav>
     );
 };

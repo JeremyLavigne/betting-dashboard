@@ -1,6 +1,29 @@
 body {
     background-image: url('./assets/images/tavla.jpg');
-    color: white;
+    color: var(--white);
     margin: 0;
     padding: 0;
+}
+
+#root {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Variables */
+
+:root {
+    /* Colors */
+    --green: linear-gradient(#0b9722, #05662a);
+    --white: white;
+
+    /* Padding - Margin */
+    --margin-xsm: 5px;
+    --margin-sm: 10px;
+    --margin-md: 15px;
+    --margin-lg: 25px;
+    --margin-xlg: 40px;
+
+    /* Display */
+    --menu-width: 120px;
 }
