@@ -1,8 +1,10 @@
 body {
-    background-image: url('./assets/images/tavla.jpg');
+    /* background-image: url('./assets/images/tavla.jpg'); */
+    background-color: var(--black);
     color: var(--white);
     margin: 0;
     padding: 0;
+    font-size: var(--font-sm);
 }
 
 #root {
@@ -14,8 +16,13 @@ body {
 
 :root {
     /* Colors */
-    --green: linear-gradient(#0b9722, #05662a);
+    --green: #326f52;
     --white: white;
+    --dark-grey: #494949;
+    --grey: #585858;
+    --black: #383838;
+    --grey-white: #c7c7c7;
+    --yellow: #fce450;
 
     /* Padding - Margin */
     --margin-xsm: 5px;
@@ -26,4 +33,11 @@ body {
 
     /* Display */
     --menu-width: 120px;
+
+    /* Font-size */
+    --font-xsm: 14px;
+    --font-sm: 18px;
+    --font-md: 24px;
+    --font-lg: 36px;
+    --font-xlg: 52px;
 }

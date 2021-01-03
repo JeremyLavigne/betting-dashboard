@@ -1,3 +1,13 @@
 .button-primary {
     background-color: palevioletred;
 }
+
+.scrap {
+    padding: var(--margin-xsm);
+    margin: var(--margin-sm);
+    font-size: var(--font-sm);
+}
+
+.button-yellow {
+    background-color: var(--yellow);
+}

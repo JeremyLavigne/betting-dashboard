@@ -9,6 +9,7 @@ import getBetDetails from '../../utils/valuebet/getBetDetails';
 import { MatchWithBetDetails } from '../../ts/app_types';
 
 import Button from '../button/Button';
+import MatchLine from '../matchLine/MatchLine';
 
 import './ChampionshipPage.css';
 
@@ -39,20 +40,16 @@ const ChampionshipPage: React.FC<ChampionshipPageProps> = (props): JSX.Element =
 
     return (
         <div className="championship_page">
+            <h1>{idIndicator[0]}</h1>
             <div>
-                <Button onClick={handleScrap}>Scrap it</Button>
+                <Button purpose="scrap" color="yellow" onClick={handleScrap}>
+                    Scrap it
+                </Button>
             </div>
-            <div>
+            <div className="championship_next_matches">
                 <h3>Next matches</h3>
-                {nextMatches.map((match) => (
-                    <li key={`${match.homeTeam}-${match.date.toLocaleDateString()}`}>
-                        {match.date.toLocaleDateString()} - {match.homeTeam} vs {match.awayTeam}:{match.oddH}/
-                        {match.oddD}/{match.oddA}
-                        <br />
-                        {match.betOn && `Go for it -> ${match.betAmount}`}
-                        <br />
-                        <br />
-                    </li>
+                {nextMatches.map((m) => (
+                    <MatchLine key={`${m.homeTeam}-${m.date}`} match={m} />
                 ))}
             </div>
         </div>
