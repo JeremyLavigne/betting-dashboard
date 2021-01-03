@@ -11,13 +11,24 @@ interface MatchLineProps {
 const MatchLine: React.FC<MatchLineProps> = ({ match }): JSX.Element => {
     return (
         <div className="match-line">
-            <div className="match-line-date">{match.date.toLocaleDateString()}</div>
-            <div>
-                {match.homeTeam} vs {match.awayTeam}:<span className="match-line-odd">{match.oddH}</span>-
-                <span className="match-line-odd">{match.oddD}</span>-
-                <span className="match-line-odd">{match.oddA}</span>
-                <span>{match.betOn && ` >> Go for it -> ${match.betAmount}`}</span>
+            <div className="match-line-main">
+                <div className="match-line-title">
+                    <span className="match-line-date">{match.date.toLocaleDateString()}</span>
+                </div>
+                <div className="match-line-body">
+                    <span className="match-line-teams">
+                        {match.homeTeam} vs {match.awayTeam}
+                    </span>
+                    <span className={`match-line-odd ${match.betOn && 'match-line-odd-active'}`}>{match.oddH}</span>
+                    <span className="match-line-odd">{match.oddD}</span>
+                    <span className="match-line-odd">{match.oddA}</span>
+                </div>
             </div>
+            {match.betOn && (
+                <div className="match-line-secondary">
+                    Bet {match.betAmount} kr on {match.homeTeam}
+                </div>
+            )}
         </div>
     );
 };
