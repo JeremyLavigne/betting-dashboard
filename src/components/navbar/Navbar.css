@@ -12,3 +12,11 @@ nav {
     color: var(--white);
     text-decoration: none;
 }
+
+.menu_home_link {
+    margin-top: var(--margin-md);
+    margin-bottom: var(--margin-lg);
+    text-align: center;
+    color: var(--white);
+    text-decoration: none;
+}

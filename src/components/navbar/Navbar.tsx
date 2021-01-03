@@ -6,6 +6,9 @@ import './Navbar.css';
 const Navbar: React.FC = (): JSX.Element => {
     return (
         <nav>
+            <Link className="menu_home_link" to="/">
+                Home
+            </Link>
             <Link className="menu_champ_link" to="/premier-league">
                 Premier League
             </Link>

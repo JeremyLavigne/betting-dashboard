@@ -1,5 +1,7 @@
 import React from 'react';
 
+import './Home.css';
+
 const Home: React.FC = (): JSX.Element => {
     const nextMatches = [
         {
@@ -24,7 +26,7 @@ const Home: React.FC = (): JSX.Element => {
         },
     ];
     return (
-        <div>
+        <div id="home_page">
             <h1>Home Page!</h1>
             {nextMatches.map((match) => (
                 <li key={`${match.homeTeam}-${match.date.toLocaleDateString()}`}>
