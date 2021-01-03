@@ -10,6 +10,8 @@ import { MatchWithBetDetails } from '../../ts/app_types';
 
 import Button from '../button/Button';
 
+import './ChampionshipPage.css';
+
 interface ChampionshipPageProps {
     urlForNewMatches: string;
     urlForOldMatches: string;
@@ -18,7 +20,7 @@ interface ChampionshipPageProps {
     maxOdd: number;
 }
 
-const Navbar: React.FC<ChampionshipPageProps> = (props): JSX.Element => {
+const ChampionshipPage: React.FC<ChampionshipPageProps> = (props): JSX.Element => {
     const [nextMatches, setNextMatches] = useState<Array<MatchWithBetDetails>>([]);
     const { urlForNewMatches, urlForOldMatches, idIndicator, capital, maxOdd } = props;
 
@@ -36,7 +38,7 @@ const Navbar: React.FC<ChampionshipPageProps> = (props): JSX.Element => {
     console.log(nextMatches);
 
     return (
-        <div>
+        <div className="championship_page">
             <div>
                 <Button onClick={handleScrap}>Scrap it</Button>
             </div>
@@ -57,7 +59,7 @@ const Navbar: React.FC<ChampionshipPageProps> = (props): JSX.Element => {
     );
 };
 
-Navbar.defaultProps = {
+ChampionshipPage.defaultProps = {
     urlForNewMatches: 'https://www.betexplorer.com/soccer/england/premier-league/',
     urlForOldMatches: 'https://www.football-data.co.uk/mmz4281/2021/E0.csv',
     idIndicator: ['PL', '20192020'],
@@ -65,4 +67,4 @@ Navbar.defaultProps = {
     maxOdd: 3,
 };
 
-export default Navbar;
+export default ChampionshipPage;

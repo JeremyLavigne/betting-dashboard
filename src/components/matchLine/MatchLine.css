@@ -1,0 +1,7 @@
+.match-line {
+    margin-bottom: var(--margin-md);
+}
+
+.match-line-odd {
+    margin-left: var(--margin-xsm);
+}

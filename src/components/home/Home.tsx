@@ -1,4 +1,5 @@
 import React from 'react';
+import MatchLine from '../matchLine/MatchLine';
 
 import './Home.css';
 
@@ -13,6 +14,10 @@ const Home: React.FC = (): JSX.Element => {
             oddA: 4,
             betOn: true,
             betAmount: 100,
+            s2GameFormRatio: 0,
+            s7PowerRatingRatio: 0,
+            s9PpsRatio: 0,
+            fairOddH: 2,
         },
         {
             homeTeam: 'Team 3',
@@ -23,21 +28,20 @@ const Home: React.FC = (): JSX.Element => {
             oddA: 2,
             betOn: false,
             betAmount: 100,
+            s2GameFormRatio: 0,
+            s7PowerRatingRatio: 0,
+            s9PpsRatio: 0,
+            fairOddH: 2,
         },
     ];
     return (
         <div id="home_page">
             <h1>Home Page!</h1>
-            {nextMatches.map((match) => (
-                <li key={`${match.homeTeam}-${match.date.toLocaleDateString()}`}>
-                    {match.date.toLocaleDateString()} - {match.homeTeam} vs {match.awayTeam}:{match.oddH}/{match.oddD}/
-                    {match.oddA}
-                    <br />
-                    {match.betOn && `Go for it -> ${match.betAmount}`}
-                    <br />
-                    <br />
-                </li>
-            ))}
+            <div className="justfortest" style={{ paddingLeft: '10px' }}>
+                {nextMatches.map((m) => (
+                    <MatchLine key={`${m.homeTeam}-${m.date}`} match={m} />
+                ))}
+            </div>
         </div>
     );
 };

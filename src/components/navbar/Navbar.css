@@ -1,7 +1,7 @@
 nav {
     background: var(--green);
-    padding: var(--margin-sm);
-    max-width: var(--menu-width);
+    padding: var(--margin-xsm);
+    width: var(--menu-width);
 
     display: flex;
     flex-direction: column;
