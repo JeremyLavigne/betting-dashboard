@@ -12,12 +12,12 @@ const getAll = async (): Promise<Array<LastUpdate>> => {
     return response.data;
 };
 
-const getByChamp = async (champ: string): Promise<LastUpdate> => {
+const getByChamp = async (champ: string): Promise<Array<LastUpdate>> => {
     const response = await Api.get(`/${champ}`);
     return response.data;
 };
 
-const createForChamp = async (lastUpdate: LastUpdate): Promise<LastUpdate> => {
+const createForChamp = async (lastUpdate: LastUpdate): Promise<Array<LastUpdate>> => {
     const response = await Api.post('/', lastUpdate);
     return response.data;
 };

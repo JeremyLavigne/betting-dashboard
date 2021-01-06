@@ -13,7 +13,7 @@ const MatchLine: React.FC<MatchLineProps> = ({ match }): JSX.Element => {
         <div className="match-line">
             <div className="match-line-main">
                 <div className="match-line-title">
-                    <span className="match-line-date">{match.date.toLocaleDateString()}</span>
+                    <span className="match-line-date">{match.date.toString().substr(0, 10)}</span>
                 </div>
                 <div className="match-line-body">
                     <span className="match-line-teams">
