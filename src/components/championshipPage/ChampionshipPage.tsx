@@ -1,45 +1,30 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
-import getNextMatches from '../../utils/scraping/nextM';
-import getPreviousMatches from '../../utils/scraping/previousM';
-import turnIntoRatio from '../../utils/extraction/turn-into-ratios';
-import getFairOdd from '../../utils/valuebet/getFairOdd';
-import getBetDetails from '../../utils/valuebet/getBetDetails';
-
-import { MatchWithBetDetails } from '../../ts/app_types';
+import { NextMatch } from '../../ts/db_types';
+import { ChampionshipPageProps } from '../../ts/cpnt_types';
 
 import MatchLine from '../matchLine/MatchLine';
+import Button from '../button/Button';
+
+import scrap from '../../utils/scrap';
 
 import './ChampionshipPage.css';
 
-interface ChampionshipPageProps {
-    urlForNewMatches: string;
-    urlForOldMatches: string;
-    idIndicator: Array<string>;
-    capital: number;
-    maxOdd: number;
-}
-
 const ChampionshipPage: React.FC<ChampionshipPageProps> = (props): JSX.Element => {
-    const [nextMatches, setNextMatches] = useState<Array<MatchWithBetDetails>>([]);
-    const { urlForNewMatches, urlForOldMatches, idIndicator, capital, maxOdd } = props;
+    const [nextMatches, setNextMatches] = useState<Array<NextMatch>>([]);
+    const { idIndicator } = props;
 
-    useEffect(() => {
-        getPreviousMatches(urlForOldMatches).then((oldM) => {
-            getNextMatches(urlForNewMatches).then((newM) => {
-                const newMatchesWithRatios = turnIntoRatio(newM, oldM, idIndicator);
-                const newMatchesWithFairOdd = getFairOdd(newMatchesWithRatios, idIndicator[0]);
-                const newMatchesWithBetDetails = getBetDetails(newMatchesWithFairOdd, capital, maxOdd);
-                setNextMatches(newMatchesWithBetDetails);
-            });
-        });
-    }, [capital, urlForNewMatches, urlForOldMatches, maxOdd, idIndicator]);
+    const handleRefresh = async () => {
+        const matches = await scrap(props);
+        setNextMatches(matches);
+    };
 
     console.log(nextMatches);
 
     return (
         <div className="championship_page">
             <h1>{idIndicator[2]}</h1>
+            <Button onClick={handleRefresh}>Refresh</Button>
             <div className="championship_next_matches">
                 <h3>Next matches</h3>
                 {nextMatches.map((m) => (
