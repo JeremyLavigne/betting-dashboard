@@ -2,10 +2,10 @@ import React from 'react';
 
 import './MatchLine.css';
 
-import { MatchWithBetDetails } from '../../ts/app_types';
+import { NextMatch } from '../../ts/db_types';
 
 interface MatchLineProps {
-    match: MatchWithBetDetails;
+    match: NextMatch;
 }
 
 const MatchLine: React.FC<MatchLineProps> = ({ match }): JSX.Element => {
@@ -13,7 +13,7 @@ const MatchLine: React.FC<MatchLineProps> = ({ match }): JSX.Element => {
         <div className="match-line">
             <div className="match-line-main">
                 <div className="match-line-title">
-                    <span className="match-line-date">{match.date.toLocaleDateString()}</span>
+                    <span className="match-line-date">{match.date.toString().substr(0, 10)}</span>
                 </div>
                 <div className="match-line-body">
                     <span className="match-line-teams">
@@ -35,12 +35,10 @@ const MatchLine: React.FC<MatchLineProps> = ({ match }): JSX.Element => {
 
 MatchLine.defaultProps = {
     match: {
+        championship: 'PL',
         date: new Date(),
         homeTeam: 'Team 1',
         awayTeam: 'Team 2',
-        s2GameFormRatio: 0,
-        s7PowerRatingRatio: 0,
-        s9PpsRatio: 0,
         oddH: 3,
         oddD: 3,
         oddA: 3,

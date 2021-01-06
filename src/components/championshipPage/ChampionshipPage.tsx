@@ -1,45 +1,80 @@
 import React, { useEffect, useState } from 'react';
 
-import getNextMatches from '../../utils/scraping/nextM';
-import getPreviousMatches from '../../utils/scraping/previousM';
-import turnIntoRatio from '../../utils/extraction/turn-into-ratios';
-import getFairOdd from '../../utils/valuebet/getFairOdd';
-import getBetDetails from '../../utils/valuebet/getBetDetails';
+// Types
+import { NextMatch } from '../../ts/db_types';
+import { ChampionshipPageProps } from '../../ts/cpnt_types';
 
-import { MatchWithBetDetails } from '../../ts/app_types';
-
+// Components
 import MatchLine from '../matchLine/MatchLine';
+import Button from '../button/Button';
 
+// Methods
+import scrap from '../../utils/scrap';
+
+// Api
+import lastUpdateApi from '../../api/lastUpdate';
+import nextMatchesApi from '../../api/nextMatches';
+
+// Css
 import './ChampionshipPage.css';
 
-interface ChampionshipPageProps {
-    urlForNewMatches: string;
-    urlForOldMatches: string;
-    idIndicator: Array<string>;
-    capital: number;
-    maxOdd: number;
-}
-
+// ================================================================================
 const ChampionshipPage: React.FC<ChampionshipPageProps> = (props): JSX.Element => {
-    const [nextMatches, setNextMatches] = useState<Array<MatchWithBetDetails>>([]);
-    const { urlForNewMatches, urlForOldMatches, idIndicator, capital, maxOdd } = props;
+    const [nextMatches, setNextMatches] = useState<Array<NextMatch>>([]);
+    const [lastUpdate, setLastUpdate] = useState<Date>(new Date());
+    const [nolastUpdateInDb, setNoLastUpdateInDb] = useState<boolean>(true);
+    const { idIndicator } = props;
 
     useEffect(() => {
-        getPreviousMatches(urlForOldMatches).then((oldM) => {
-            getNextMatches(urlForNewMatches).then((newM) => {
-                const newMatchesWithRatios = turnIntoRatio(newM, oldM, idIndicator);
-                const newMatchesWithFairOdd = getFairOdd(newMatchesWithRatios, idIndicator[0]);
-                const newMatchesWithBetDetails = getBetDetails(newMatchesWithFairOdd, capital, maxOdd);
-                setNextMatches(newMatchesWithBetDetails);
-            });
+        lastUpdateApi.getByChamp(idIndicator[0]).then((res) => {
+            if (typeof res[0] !== 'undefined') {
+                setLastUpdate(res[0].date);
+                setNoLastUpdateInDb(false);
+            } else {
+                setNoLastUpdateInDb(true);
+            }
         });
-    }, [capital, urlForNewMatches, urlForOldMatches, maxOdd, idIndicator]);
+        nextMatchesApi.getAllByChamp(idIndicator[0]).then((res) => {
+            setNextMatches(res);
+        });
+    }, [idIndicator]);
 
-    console.log(nextMatches);
+    const handleRefresh = async () => {
+        // Reset current data
+        lastUpdateApi.deleteByChamp(idIndicator[0]);
+        nextMatchesApi.deleteAllByChamp(idIndicator[0]);
+
+        // Fetch update one
+        const matches = await scrap(props);
+
+        // Store update data
+        lastUpdateApi
+            .createForChamp({
+                championship: idIndicator[0],
+                date: new Date(),
+            })
+            .then(() => {
+                setLastUpdate(new Date());
+            });
+        nextMatchesApi.createAllForChamp(matches).then((res) => setNextMatches(res));
+    };
+
+    // console.log(nextMatches);
+    // console.log(lastUpdate);
 
     return (
         <div className="championship_page">
             <h1>{idIndicator[2]}</h1>
+            <div>
+                <Button purpose="refresh" color="yellow" onClick={handleRefresh}>
+                    Refresh
+                </Button>
+                {!nolastUpdateInDb && (
+                    <span className="championship_last_update">
+                        Last Update : {lastUpdate.toString().substr(0, 10)} {lastUpdate.toString().substr(11, 5)}
+                    </span>
+                )}
+            </div>
             <div className="championship_next_matches">
                 <h3>Next matches</h3>
                 {nextMatches.map((m) => (
@@ -51,11 +86,11 @@ const ChampionshipPage: React.FC<ChampionshipPageProps> = (props): JSX.Element =
 };
 
 ChampionshipPage.defaultProps = {
-    urlForNewMatches: 'https://www.betexplorer.com/soccer/england/premier-league/',
-    urlForOldMatches: 'https://www.football-data.co.uk/mmz4281/2021/E0.csv',
-    idIndicator: ['PL', '20192020'],
-    capital: 100,
-    maxOdd: 3,
+    urlForNewMatches: '',
+    urlForOldMatches: '',
+    idIndicator: ['', ''],
+    capital: 1,
+    maxOdd: 1,
 };
 
 export default ChampionshipPage;
