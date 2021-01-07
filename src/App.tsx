@@ -90,7 +90,7 @@ const App: React.FC = (): JSX.Element => {
                 <Route path="/premiership">
                     <ChampionshipPage
                         urlForNewMatches="https://www.betexplorer.com/soccer/scotland/premiership/"
-                        urlForOldMatches="https://www.football-data.co.uk/mmz4281/2021/SCO.csv"
+                        urlForOldMatches="https://www.football-data.co.uk/mmz4281/2021/SC0.csv"
                         idIndicator={['SCO', '20192020', 'Premiership']}
                         capital={capital}
                         maxOdd={[0, 8, 3.3]}

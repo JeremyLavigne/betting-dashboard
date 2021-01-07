@@ -179,7 +179,6 @@ const getFairOdds = (matchesWithRatios: Array<MatchWithRatios>, champIndicator: 
         } else {
             fairOddA = Math.round(fairOddA * 100) / 100;
         }
-        console.log(fairOddA, fairOddD, fairOddH);
 
         matchesWithFairOdd.push({ ...matchesWithRatios[i], fairOddH, fairOddD, fairOddA });
     }
