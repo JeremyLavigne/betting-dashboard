@@ -3,5 +3,5 @@ export interface ChampionshipPageProps {
     urlForOldMatches: string;
     idIndicator: Array<string>;
     capital: number;
-    maxOdd: number;
+    maxOdd: Array<number>;
 }

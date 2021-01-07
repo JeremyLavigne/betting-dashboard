@@ -61,6 +61,14 @@ const teamNameCheck = (teamName: string): string => {
         return 'Schalke 04';
     }
 
+    // Championship
+    if (teamName === 'Nottingham') {
+        return "Nott'm Forest";
+    }
+    if (teamName === 'Sheffield Wed') {
+        return 'Sheffield Weds';
+    }
+
     // League One
     if (teamName === 'Bristol Rovers') {
         return 'Bristol Rvs';
@@ -84,6 +92,14 @@ const teamNameCheck = (teamName: string): string => {
     }
     if (teamName === 'Bradford City') {
         return 'Bradford';
+    }
+
+    // Premiership
+    if (teamName === 'Dundee Utd') {
+        return 'Dundee United';
+    }
+    if (teamName === 'St. Mirren') {
+        return 'St Mirren';
     }
 
     // If no problem, just return the original one

@@ -19,14 +19,20 @@ const MatchLine: React.FC<MatchLineProps> = ({ match }): JSX.Element => {
                     <span className="match-line-teams">
                         {match.homeTeam} vs {match.awayTeam}
                     </span>
-                    <span className={`match-line-odd ${match.betOn && 'match-line-odd-active'}`}>{match.oddH}</span>
-                    <span className="match-line-odd">{match.oddD}</span>
-                    <span className="match-line-odd">{match.oddA}</span>
+                    <span className={`match-line-odd ${match.betOnH && 'match-line-odd-active'}`}>{match.oddH}</span>
+                    <span className={`match-line-odd ${match.betOnD && 'match-line-odd-active'}`}>{match.oddD}</span>
+                    <span className={`match-line-odd ${match.betOnA && 'match-line-odd-active'}`}>{match.oddA}</span>
                 </div>
             </div>
-            {match.betOn && (
+            {match.betOnH && (
                 <div className="match-line-secondary">
-                    Bet {match.betAmount} kr on {match.homeTeam}
+                    Bet {match.betAmountH} kr on {match.homeTeam}
+                </div>
+            )}
+            {match.betOnD && <div className="match-line-secondary">Bet {match.betAmountD} kr on Draw</div>}
+            {match.betOnA && (
+                <div className="match-line-secondary">
+                    Bet {match.betAmountA} kr on {match.awayTeam}
                 </div>
             )}
         </div>
@@ -43,8 +49,14 @@ MatchLine.defaultProps = {
         oddD: 3,
         oddA: 3,
         fairOddH: 3,
-        betAmount: 0,
-        betOn: false,
+        fairOddD: 3,
+        fairOddA: 3,
+        betAmountH: 0,
+        betAmountD: 0,
+        betAmountA: 0,
+        betOnH: false,
+        betOnD: false,
+        betOnA: false,
     },
 };
 

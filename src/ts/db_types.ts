@@ -12,6 +12,12 @@ export interface NextMatch {
     oddD: number;
     oddA: number;
     fairOddH: number;
-    betAmount: number;
-    betOn: boolean;
+    fairOddD: number;
+    fairOddA: number;
+    betAmountH: number;
+    betAmountD: number;
+    betAmountA: number;
+    betOnH: boolean;
+    betOnD: boolean;
+    betOnA: boolean;
 }

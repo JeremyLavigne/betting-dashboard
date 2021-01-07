@@ -21,7 +21,7 @@ export interface MatchWithRatios {
     oddA: number;
 }
 
-// Adding Fair odd (Only odd Home now)
+// Adding Fair odd
 export interface MatchWithFairOdd {
     date: Date;
     homeTeam: string;
@@ -33,6 +33,8 @@ export interface MatchWithFairOdd {
     oddD: number;
     oddA: number;
     fairOddH: number;
+    fairOddD: number;
+    fairOddA: number;
 }
 
 // Adding Bet details (bet on ? & how many to bet)
@@ -47,8 +49,14 @@ export interface MatchWithBetDetails {
     oddD: number;
     oddA: number;
     fairOddH: number;
-    betAmount: number;
-    betOn: boolean;
+    fairOddD: number;
+    fairOddA: number;
+    betAmountH: number;
+    betAmountD: number;
+    betAmountA: number;
+    betOnH: boolean;
+    betOnD: boolean;
+    betOnA: boolean;
 }
 
 // ==================== Previous matches =================================

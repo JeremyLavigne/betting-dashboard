@@ -24,11 +24,17 @@ const Navbar: React.FC = (): JSX.Element => {
             <Link className="menu_champ_link" to="/bundesliga">
                 Bundesliga
             </Link>
+            <Link className="menu_champ_link" to="/championship">
+                Championship
+            </Link>
             <Link className="menu_champ_link" to="/league-one">
                 League One
             </Link>
             <Link className="menu_champ_link" to="/league-two">
                 League Two
+            </Link>
+            <Link className="menu_champ_link" to="/premiership">
+                Premiership
             </Link>
         </nav>
     );

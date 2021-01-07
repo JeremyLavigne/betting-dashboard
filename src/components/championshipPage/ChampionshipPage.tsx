@@ -59,7 +59,7 @@ const ChampionshipPage: React.FC<ChampionshipPageProps> = (props): JSX.Element =
         nextMatchesApi.createAllForChamp(matches).then((res) => setNextMatches(res));
     };
 
-    // console.log(nextMatches);
+    console.log(nextMatches);
     // console.log(lastUpdate);
 
     return (
@@ -90,7 +90,7 @@ ChampionshipPage.defaultProps = {
     urlForOldMatches: '',
     idIndicator: ['', ''],
     capital: 1,
-    maxOdd: 1,
+    maxOdd: [0, 0, 0],
 };
 
 export default ChampionshipPage;
