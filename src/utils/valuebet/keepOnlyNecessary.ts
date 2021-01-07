@@ -17,8 +17,14 @@ const keepOnlyNecessary = (
             oddD: matchesWithBetDetails[i].oddD,
             oddA: matchesWithBetDetails[i].oddA,
             fairOddH: matchesWithBetDetails[i].fairOddH,
-            betAmount: matchesWithBetDetails[i].betAmount,
-            betOn: matchesWithBetDetails[i].betOn,
+            fairOddD: matchesWithBetDetails[i].fairOddD,
+            fairOddA: matchesWithBetDetails[i].fairOddA,
+            betAmountH: matchesWithBetDetails[i].betAmountH,
+            betAmountD: matchesWithBetDetails[i].betAmountD,
+            betAmountA: matchesWithBetDetails[i].betAmountA,
+            betOnH: matchesWithBetDetails[i].betOnH,
+            betOnD: matchesWithBetDetails[i].betOnD,
+            betOnA: matchesWithBetDetails[i].betOnA,
         });
     }
 
