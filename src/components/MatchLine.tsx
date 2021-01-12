@@ -1,8 +1,8 @@
 import React from 'react';
 
-import './MatchLine.css';
+import '../style/MatchLine.css';
 
-import { NextMatch } from '../../ts/db_types';
+import { NextMatch } from '../ts/db_types';
 
 interface MatchLineProps {
     match: NextMatch;

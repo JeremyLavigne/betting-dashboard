@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import './Navbar.css';
+import '../style/Navbar.css';
 
 const Navbar: React.FC = (): JSX.Element => {
     return (

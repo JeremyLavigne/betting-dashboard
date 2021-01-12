@@ -3,9 +3,9 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import './App.css';
 
-import Navbar from './components/navbar/Navbar';
-import Home from './components/home/Home';
-import ChampionshipPage from './components/championshipPage/ChampionshipPage';
+import Navbar from './components/Navbar';
+import Home from './components/Home';
+import ChampionshipPage from './components/ChampionshipPage';
 
 const App: React.FC = (): JSX.Element => {
     // Set the capital here

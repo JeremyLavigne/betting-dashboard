@@ -1,22 +1,22 @@
 import React, { useEffect, useState } from 'react';
 
 // Types
-import { NextMatch } from '../../ts/db_types';
-import { ChampionshipPageProps } from '../../ts/cpnt_types';
+import { NextMatch } from '../ts/db_types';
+import { ChampionshipPageProps } from '../ts/cpnt_types';
 
 // Components
-import MatchLine from '../matchLine/MatchLine';
-import Button from '../button/Button';
+import MatchLine from './MatchLine';
+import Button from './Button';
 
 // Methods
-import scrap from '../../utils/scrap';
+import scrap from '../utils/scrap';
 
 // Api
-import lastUpdateApi from '../../api/lastUpdate';
-import nextMatchesApi from '../../api/nextMatches';
+import lastUpdateApi from '../api/lastUpdate';
+import nextMatchesApi from '../api/nextMatches';
 
 // Css
-import './ChampionshipPage.css';
+import '../style/ChampionshipPage.css';
 
 // ================================================================================
 const ChampionshipPage: React.FC<ChampionshipPageProps> = (props): JSX.Element => {
