@@ -2,7 +2,7 @@ import React from 'react';
 
 import '../style/MatchLine.css';
 
-import { NextMatch } from '../ts/db_types';
+import { NextMatch } from '../ts/nextMatch.type';
 
 interface MatchLineProps {
     match: NextMatch;

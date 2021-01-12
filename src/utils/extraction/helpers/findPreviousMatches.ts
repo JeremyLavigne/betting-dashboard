@@ -2,7 +2,7 @@
 // === return previous match & 6th pevious match for both home&away team
 // ==============================================================================
 
-import { MatchWithMatchNumber, PreviousMatches } from '../../../ts/app_types';
+import { MatchWithMatchNumber, PreviousMatches } from '../../../ts/previousMatch.type';
 
 const findPreviousMatches = (
     existingMatch: MatchWithMatchNumber,

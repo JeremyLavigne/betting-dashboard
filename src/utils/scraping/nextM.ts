@@ -1,7 +1,7 @@
 import axios from 'axios';
 import cheerio from 'cheerio';
 
-import { Match } from '../../ts/app_types';
+import { Match } from '../../ts/nextMatch.type';
 
 // Return a Promise with expected Array
 const getMatches = async (url: string): Promise<Array<Match>> => {

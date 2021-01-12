@@ -2,7 +2,7 @@
 // === Add Match Number to match object
 // ==============================================================================
 
-import { MatchWithMatchNumber, MatchWithPpsResults, MatchFull } from '../../../ts/app_types';
+import { MatchWithMatchNumber, MatchWithPpsResults, MatchFull } from '../../../ts/previousMatch.type';
 
 const getMatchNumber = (
     existingMatch: MatchWithPpsResults,

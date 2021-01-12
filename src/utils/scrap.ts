@@ -1,5 +1,5 @@
-import { NextMatch } from '../ts/db_types';
-import { ChampionshipPageProps } from '../ts/cpnt_types';
+import { NextMatch } from '../ts/nextMatch.type';
+import { ChampionshipPageProps } from '../ts/championship.type';
 
 import getNextMatches from './scraping/nextM';
 import getPreviousMatches from './scraping/previousM';

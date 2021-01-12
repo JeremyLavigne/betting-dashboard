@@ -2,7 +2,7 @@
 // === Add one propery -> ppsResult (e.g. match result using PPS way)
 // ==============================================================================
 
-import { MatchWithPpsResults, MatchWithRenamedProps } from '../../../ts/app_types';
+import { MatchWithPpsResults, MatchWithRenamedProps } from '../../../ts/previousMatch.type';
 
 const ppsResults = (originalMatch: MatchWithRenamedProps): MatchWithPpsResults => {
     const {

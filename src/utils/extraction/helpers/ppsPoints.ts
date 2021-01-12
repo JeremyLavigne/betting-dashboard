@@ -2,7 +2,7 @@
 // === Add All 'PPS Scoring points' details to match object
 // ==============================================================================
 
-import { MatchFull, MatchWithMatchNumber, MatchWithPpsPoints } from '../../../ts/app_types';
+import { MatchFull, MatchWithMatchNumber, MatchWithPpsPoints } from '../../../ts/previousMatch.type';
 
 const ppsPoints = (
     existingMatch: MatchWithMatchNumber,

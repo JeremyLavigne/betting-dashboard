@@ -1,6 +1,7 @@
 import extendsData from './extends-data';
 
-import { Match, MatchPlayed, MatchWithRatios } from '../../ts/app_types';
+import { MatchPlayed } from '../../ts/previousMatch.type';
+import { Match, MatchWithRatios } from '../../ts/nextMatch.type';
 import arrangeTypes from './helpers/arrangeTypes';
 
 const turnIntoRatio = (

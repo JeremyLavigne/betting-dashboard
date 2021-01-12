@@ -1,4 +1,4 @@
-import { MatchWithRatios, MatchWithFairOdd } from '../../ts/app_types';
+import { MatchWithRatios, MatchWithFairOdd } from '../../ts/nextMatch.type';
 
 const getFairOdds = (matchesWithRatios: Array<MatchWithRatios>, champIndicator: string): Array<MatchWithFairOdd> => {
     // Put equations regarding the championship

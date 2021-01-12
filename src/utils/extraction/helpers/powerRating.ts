@@ -2,7 +2,7 @@
 // === Team Power Rating
 // ==============================================================================
 
-import { MatchFull, MatchWithGameFormDiff, MatchWithPowerRating } from '../../../ts/app_types';
+import { MatchFull, MatchWithGameFormDiff, MatchWithPowerRating } from '../../../ts/previousMatch.type';
 
 const powerRating = (
     existingMatch: MatchWithGameFormDiff,

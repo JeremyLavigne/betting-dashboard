@@ -1,4 +1,4 @@
-import { MatchWithBetDetails, MatchWithFairOdd } from '../../ts/app_types';
+import { MatchWithBetDetails, MatchWithFairOdd } from '../../ts/nextMatch.type';
 
 const getBenefices = (
     matchesWithFairOdd: Array<MatchWithFairOdd>,

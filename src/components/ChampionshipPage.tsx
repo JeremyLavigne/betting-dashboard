@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 
 // Types
-import { NextMatch } from '../ts/db_types';
-import { ChampionshipPageProps } from '../ts/cpnt_types';
+import { NextMatch } from '../ts/nextMatch.type';
+import { ChampionshipPageProps } from '../ts/championship.type';
 
 // Components
 import MatchLine from './MatchLine';
@@ -19,6 +19,7 @@ import nextMatchesApi from '../api/nextMatches';
 import '../style/ChampionshipPage.css';
 
 // ================================================================================
+
 const ChampionshipPage: React.FC<ChampionshipPageProps> = (props): JSX.Element => {
     const [nextMatches, setNextMatches] = useState<Array<NextMatch>>([]);
     const [lastUpdate, setLastUpdate] = useState<Date>(new Date());

@@ -2,7 +2,8 @@
 // === Arrange type of upcoming matches to fit with our existing functions
 // ==============================================================================
 
-import { Match, MatchPlayed } from '../../../ts/app_types';
+import { Match } from '../../../ts/nextMatch.type';
+import { MatchPlayed } from '../../../ts/previousMatch.type';
 
 import teamNameCheck from './teamNameCheck';
 

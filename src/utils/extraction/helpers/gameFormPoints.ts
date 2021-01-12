@@ -2,7 +2,7 @@
 // === Add All 'GameForm Scoring points' details to match object
 // ==============================================================================
 
-import { MatchWithGameFormPoints, MatchFull, MatchWithPpsPoints } from '../../../ts/app_types';
+import { MatchWithGameFormPoints, MatchFull, MatchWithPpsPoints } from '../../../ts/previousMatch.type';
 
 const gameFormPoints = (
     existingMatch: MatchWithPpsPoints,

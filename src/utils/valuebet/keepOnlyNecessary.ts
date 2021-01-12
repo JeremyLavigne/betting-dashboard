@@ -1,5 +1,4 @@
-import { NextMatch } from '../../ts/db_types';
-import { MatchWithBetDetails } from '../../ts/app_types';
+import { NextMatch, MatchWithBetDetails } from '../../ts/nextMatch.type';
 
 const keepOnlyNecessary = (
     matchesWithBetDetails: Array<MatchWithBetDetails>,

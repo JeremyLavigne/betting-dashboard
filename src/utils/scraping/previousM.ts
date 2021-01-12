@@ -1,7 +1,7 @@
 import csv from 'csvtojson';
 import axios from 'axios';
 
-import { MatchPlayed } from '../../ts/app_types';
+import { MatchPlayed } from '../../ts/previousMatch.type';
 
 const getMatches = async (url: string): Promise<Array<MatchPlayed>> => {
     const matches: Array<MatchPlayed> = [];

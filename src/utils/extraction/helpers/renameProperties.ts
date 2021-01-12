@@ -2,7 +2,7 @@
 // === Rename existing properties to more exploitable names
 // ==============================================================================
 
-import { MatchPlayed, MatchWithRenamedProps } from '../../../ts/app_types';
+import { MatchPlayed, MatchWithRenamedProps } from '../../../ts/previousMatch.type';
 
 const renameProperties = (
     oldObject: MatchPlayed,

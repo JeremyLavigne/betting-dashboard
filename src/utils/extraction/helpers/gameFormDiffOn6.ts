@@ -2,7 +2,7 @@
 // === Add All 'Diff on 6 Game form' details to match object
 // ==============================================================================
 
-import { MatchFull, MatchWithGameFormDiff, MatchWithGameFormPoints } from '../../../ts/app_types';
+import { MatchFull, MatchWithGameFormDiff, MatchWithGameFormPoints } from '../../../ts/previousMatch.type';
 
 const gameFormDiffOn6 = (
     existingMatch: MatchWithGameFormPoints,

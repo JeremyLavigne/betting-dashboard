@@ -2,7 +2,7 @@
 // === For more info on all of this - see https://github.com/JeremyLavigne/ratios-extractor
 // ==============================================================================
 
-import { MatchFull, MatchPlayed } from '../../ts/app_types';
+import { MatchFull, MatchPlayed } from '../../ts/previousMatch.type';
 
 import renameProperties from './helpers/renameProperties';
 import ppsResults from './helpers/ppsResults';

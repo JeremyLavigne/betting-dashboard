@@ -2,7 +2,7 @@
 // === Calculate Adjustment using result of the match
 // ==============================================================================
 
-import { MatchWithPowerRating, MatchFull } from '../../../ts/app_types';
+import { MatchWithPowerRating, MatchFull } from '../../../ts/previousMatch.type';
 
 const powerRatingAdjustment = (originalMatch: MatchWithPowerRating): MatchFull => {
     const { homeTeamPowerRating, awayTeamPowerRating, homeTeamGoalsFor, awayTeamGoalsFor } = originalMatch;
