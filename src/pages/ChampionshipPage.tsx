@@ -5,8 +5,8 @@ import { NextMatch } from '../ts/nextMatch.type';
 import { ChampionshipPageProps } from '../ts/championship.type';
 
 // Components
-import MatchLine from './MatchLine';
-import Button from './Button';
+import MatchLine from '../components/MatchLine';
+import Button from '../components/Button';
 
 // Methods
 import scrap from '../utils/scrap';

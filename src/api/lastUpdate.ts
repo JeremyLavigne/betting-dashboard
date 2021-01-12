@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { LastUpdate } from '../ts/db_types';
+import { LastUpdate } from '../ts/lastUpdate.type';
 
 const BASE_URL = 'http://localhost:3001/api/last-update';
 
