@@ -1,10 +1,10 @@
 import axios from 'axios';
 import cheerio from 'cheerio';
 
-import { Match } from '../../ts/nextMatch.type';
+import { NextMatch } from '../../ts/nextMatch.type';
 
 // Return a Promise with expected Array
-const getMatches = async (url: string): Promise<Array<Match>> => {
+const getMatches = async (url: string, id: string): Promise<Array<NextMatch>> => {
     const page = await axios.get(url);
 
     if (!page) {
@@ -43,17 +43,50 @@ const getMatches = async (url: string): Promise<Array<Match>> => {
             odds.push($(el).children().attr('data-odd'));
         });
 
-    const matches = [];
+    const matches: Array<NextMatch> = [];
     // 3 times more odds than dates or teams.
     // Odds always in order : Home-Draw-Away
     for (let i = 0; i < odds.length; i += 3) {
-        const match = {
+        // Received a date like that: 12/09/2020 or 12.09 18:00 or 'Today ..' or 'Tomorrow ...'
+        const day = dates[i / 3]?.substr(0, 2);
+        const month = dates[i / 3]?.substr(3, 2);
+        const year = dates[i / 3]?.substr(6, 4);
+
+        // Want a date like that: 09/12/2020
+        let dateRightFormat = '';
+        if (month === 'ay') {
+            // Means we have a date like 'Today ...'
+            dateRightFormat = new Date().toString();
+        } else if (month === 'or') {
+            // Means we have a date like 'Tomorrow ...'
+            const today = new Date();
+            const tomorrow = new Date(today);
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            dateRightFormat = tomorrow.toString();
+        } else if (year?.includes(':')) {
+            dateRightFormat = `${month}/${day}/${year}`;
+        } else {
+            dateRightFormat = `${month}/${day}/${new Date().getFullYear()}`;
+        }
+
+        const match: NextMatch = {
+            championship: id,
             homeTeam: teams[i / 3][0],
             awayTeam: teams[i / 3][1],
-            date: dates[i / 3],
-            oddH: odds[i],
-            oddD: odds[i + 1],
-            oddA: odds[i + 2],
+            date: new Date(dateRightFormat),
+            oddH: Number(odds[i]),
+            oddD: Number(odds[i + 1]),
+            oddA: Number(odds[i + 2]),
+            // Default properties
+            fairOddH: 50,
+            fairOddD: 50,
+            fairOddA: 50,
+            betAmountH: 0,
+            betAmountD: 0,
+            betAmountA: 0,
+            betOnH: false,
+            betOnD: false,
+            betOnA: false,
         };
         matches.push(match);
     }

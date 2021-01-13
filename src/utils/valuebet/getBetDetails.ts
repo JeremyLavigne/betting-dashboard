@@ -1,10 +1,10 @@
-import { MatchWithBetDetails, MatchWithFairOdd } from '../../ts/nextMatch.type';
+import { NextMatch } from '../../ts/nextMatch.type';
 
 const getBenefices = (
-    matchesWithFairOdd: Array<MatchWithFairOdd>,
+    matchesWithFairOdd: Array<NextMatch>,
     capital: number,
     maxOdd: Array<number>,
-): Array<MatchWithBetDetails> => {
+): Array<NextMatch> => {
     const matchWithBetDetails = [];
 
     const maxOddH = maxOdd[0];

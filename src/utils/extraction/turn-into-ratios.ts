@@ -1,10 +1,10 @@
 import extendsData from './extends-data';
 
 import { MatchFull } from '../../ts/previousMatch.type';
-import { Match, MatchWithRatios } from '../../ts/nextMatch.type';
+import { NextMatch, NextMatchWithRatios } from '../../ts/nextMatch.type';
 import arrangeTypes from './helpers/arrangeTypes';
 
-const turnIntoRatio = (newMatches: Array<Match>, oldMatches: Array<MatchFull>): Array<MatchWithRatios> => {
+const turnIntoRatio = (newMatches: Array<NextMatch>, oldMatches: Array<MatchFull>): Array<NextMatchWithRatios> => {
     // Put new matches under same format, for convenience
     // No matter if some data (Goals, corners, etc..) are wrong, because won't be used
     const newMatchesWithArrangedType: Array<MatchFull> = arrangeTypes(newMatches);
@@ -21,9 +21,6 @@ const turnIntoRatio = (newMatches: Array<Match>, oldMatches: Array<MatchFull>): 
     const newMatchesWithRatios = [];
     for (let i = 0; i < transformedNewMatches.length; i += 1) {
         const {
-            date,
-            homeTeam,
-            awayTeam,
             homeTeamGameFormPointsOn6,
             awayTeamGameFormPointsOn6,
             homeTeamPowerRating,
@@ -48,19 +45,12 @@ const turnIntoRatio = (newMatches: Array<Match>, oldMatches: Array<MatchFull>): 
         const s9 =
             homeTeamPpsPointsTotal / (homeTeamMatchNumber - 1) - awayTeamPpsPointsTotal / (awayTeamMatchNumber - 1);
 
-        const newMatchWithRatios = {
-            date,
-            homeTeam,
-            awayTeam,
+        newMatchesWithRatios.push({
+            ...newMatches[i],
             s2GameFormRatio: Math.round(s2 * 1000) / 1000,
             s7PowerRatingRatio: Math.round(s7 * 1000) / 1000,
             s9PpsRatio: Math.round(s9 * 1000) / 1000,
-            oddH,
-            oddD,
-            oddA,
-        };
-
-        newMatchesWithRatios.push(newMatchWithRatios);
+        });
     }
 
     return newMatchesWithRatios;
