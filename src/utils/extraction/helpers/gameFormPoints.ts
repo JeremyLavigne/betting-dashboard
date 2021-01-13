@@ -2,13 +2,13 @@
 // === Add All 'GameForm Scoring points' details to match object
 // ==============================================================================
 
-import { MatchWithGameFormPoints, MatchFull, MatchWithPpsPoints } from '../../../ts/previousMatch.type';
+import { MatchFull } from '../../../ts/previousMatch.type';
 
 const gameFormPoints = (
-    existingMatch: MatchWithPpsPoints,
+    existingMatch: MatchFull,
     homeTeamPreviousMatch: MatchFull | Record<string, never>,
     awayTeamPreviousMatch: MatchFull | Record<string, never>,
-): MatchWithGameFormPoints => {
+): MatchFull => {
     const { homeTeam, awayTeam } = existingMatch;
 
     // Local variables

@@ -2,13 +2,13 @@
 // === Add All 'Diff on 6 Game form' details to match object
 // ==============================================================================
 
-import { MatchFull, MatchWithGameFormDiff, MatchWithGameFormPoints } from '../../../ts/previousMatch.type';
+import { MatchFull } from '../../../ts/previousMatch.type';
 
 const gameFormDiffOn6 = (
-    existingMatch: MatchWithGameFormPoints,
+    existingMatch: MatchFull,
     homeTeamPrevious6: MatchFull | Record<string, never>,
     awayTeamPrevious6: MatchFull | Record<string, never>,
-): MatchWithGameFormDiff => {
+): MatchFull => {
     const { homeTeam, awayTeam, homeTeamGameFormPoints, awayTeamGameFormPoints } = existingMatch;
 
     // Local variables

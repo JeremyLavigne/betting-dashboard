@@ -2,13 +2,13 @@
 // === Add All 'PPS Scoring points' details to match object
 // ==============================================================================
 
-import { MatchFull, MatchWithMatchNumber, MatchWithPpsPoints } from '../../../ts/previousMatch.type';
+import { MatchFull } from '../../../ts/previousMatch.type';
 
 const ppsPoints = (
-    existingMatch: MatchWithMatchNumber,
+    existingMatch: MatchFull,
     homeTeamPreviousMatch: MatchFull | Record<string, never>,
     awayTeamPreviousMatch: MatchFull | Record<string, never>,
-): MatchWithPpsPoints => {
+): MatchFull => {
     const { homeTeam, awayTeam } = existingMatch;
 
     // Local variables

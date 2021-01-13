@@ -2,12 +2,16 @@
 // === return previous match & 6th pevious match for both home&away team
 // ==============================================================================
 
-import { MatchWithMatchNumber, PreviousMatches } from '../../../ts/previousMatch.type';
+import { MatchFull } from '../../../ts/previousMatch.type';
 
-const findPreviousMatches = (
-    existingMatch: MatchWithMatchNumber,
-    newDb: Array<MatchWithMatchNumber>,
-): PreviousMatches => {
+interface PreviousMatches {
+    homeTeamPreviousMatch: MatchFull | Record<string, never>; // cover case of {}
+    awayTeamPreviousMatch: MatchFull | Record<string, never>;
+    homeTeamPrevious6: MatchFull | Record<string, never>;
+    awayTeamPrevious6: MatchFull | Record<string, never>;
+}
+
+const findPreviousMatches = (existingMatch: MatchFull, newDb: Array<MatchFull>): PreviousMatches => {
     // Find the match before
     const homeTeamPreviousMatch =
         newDb.find(

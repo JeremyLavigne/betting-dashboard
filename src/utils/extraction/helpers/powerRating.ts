@@ -2,13 +2,13 @@
 // === Team Power Rating
 // ==============================================================================
 
-import { MatchFull, MatchWithGameFormDiff, MatchWithPowerRating } from '../../../ts/previousMatch.type';
+import { MatchFull } from '../../../ts/previousMatch.type';
 
 const powerRating = (
-    existingMatch: MatchWithGameFormDiff,
+    existingMatch: MatchFull,
     homeTeamPreviousMatch: MatchFull | Record<string, never>,
     awayTeamPreviousMatch: MatchFull | Record<string, never>,
-): MatchWithPowerRating => {
+): MatchFull => {
     const newMatch = { ...existingMatch };
 
     const { homeTeam, awayTeam } = newMatch;
