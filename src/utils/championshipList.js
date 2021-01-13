@@ -9,7 +9,7 @@ const championshipList = [
         equationsH: [
             [0.01, 0.12, 0.46],
             [-0.01, 0.13, 0.49],
-            [0, 0.12, 0, 47],
+            [0, 0.12, 0.47],
         ], // [ S2[a, b, c]*, S7[a, b, c], S9[a, b, c] ]
         // * x(ratio) => ax² + bx + c (fair Odd)
         equationsD: [[], [], []], // Empty if no equqtions

@@ -1,10 +1,10 @@
 import extendsData from './extends-data';
 
-import { MatchFull } from '../../ts/previousMatch.type';
+import { MatchFull, PreviousMatch } from '../../ts/previousMatch.type';
 import { NextMatch, NextMatchWithRatios } from '../../ts/nextMatch.type';
 import arrangeTypes from './helpers/arrangeTypes';
 
-const turnIntoRatio = (newMatches: Array<NextMatch>, oldMatches: Array<MatchFull>): Array<NextMatchWithRatios> => {
+const turnIntoRatio = (newMatches: Array<NextMatch>, oldMatches: Array<PreviousMatch>): Array<NextMatchWithRatios> => {
     // Put new matches under same format, for convenience
     // No matter if some data (Goals, corners, etc..) are wrong, because won't be used
     const newMatchesWithArrangedType: Array<MatchFull> = arrangeTypes(newMatches);
@@ -14,6 +14,8 @@ const turnIntoRatio = (newMatches: Array<NextMatch>, oldMatches: Array<MatchFull
 
     // Need old matches to have the whole history and get ratios for new ones
     const transformedMatches = extendsData(allMatches);
+
+    // console.log(transformedMatches);
 
     // No need to work with old ones anymore
     const transformedNewMatches = transformedMatches.slice(oldMatches.length);

@@ -83,27 +83,39 @@ const getFairOdds = (
         const fairOddAwayWithS7 = Math.round((1 / predictS7A(matchesWithRatios[i].s7PowerRatingRatio)) * 100) / 100;
         const fairOddAwayWithS9 = Math.round((1 / predictS9A(matchesWithRatios[i].s9PpsRatio)) * 100) / 100;
 
-        let fairOddH = (fairOddHomeWithS2 + fairOddHomeWithS7 + fairOddHomeWithS9) / 3;
-        let fairOddD = (fairOddDrawWithS2 + fairOddDrawWithS7 + fairOddDrawWithS9) / 3;
-        let fairOddA = (fairOddAwayWithS2 + fairOddAwayWithS7 + fairOddAwayWithS9) / 3;
+        let tempfairOddH = (fairOddHomeWithS2 + fairOddHomeWithS7 + fairOddHomeWithS9) / 3;
+        let tempfairOddD = (fairOddDrawWithS2 + fairOddDrawWithS7 + fairOddDrawWithS9) / 3;
+        let tempfairOddA = (fairOddAwayWithS2 + fairOddAwayWithS7 + fairOddAwayWithS9) / 3;
+
+        // console.log(
+        //     fairOddHomeWithS2,
+        //     fairOddHomeWithS7,
+        //     fairOddHomeWithS9,
+        //     fairOddDrawWithS2,
+        //     fairOddDrawWithS7,
+        //     fairOddDrawWithS9,
+        //     fairOddAwayWithS2,
+        //     fairOddAwayWithS7,
+        //     fairOddAwayWithS9,
+        // );
 
         // Sometimes, when big odd for example, predict can return a negative value.
-        if (fairOddH < 1) {
-            fairOddH = 50; // Put arbitrary a huge odd (= no bet on this one);
+        if (Number.isNaN(tempfairOddH) || tempfairOddH < 1) {
+            tempfairOddH = 50; // Put arbitrary a huge odd (= no bet on this one);
         } else {
-            fairOddH = Math.round(fairOddH * 100) / 100;
+            tempfairOddH = Math.round(tempfairOddH * 100) / 100;
         }
 
-        if (fairOddD < 1) {
-            fairOddD = 50; // Put arbitrary a huge odd (= no bet on this one);
+        if (Number.isNaN(tempfairOddD) || tempfairOddD < 1) {
+            tempfairOddD = 50;
         } else {
-            fairOddD = Math.round(fairOddD * 100) / 100;
+            tempfairOddD = Math.round(tempfairOddD * 100) / 100;
         }
 
-        if (fairOddA < 1) {
-            fairOddA = 50; // Put arbitrary a huge odd (= no bet on this one);
+        if (Number.isNaN(tempfairOddA) || tempfairOddA < 1) {
+            tempfairOddA = 50;
         } else {
-            fairOddA = Math.round(fairOddA * 100) / 100;
+            tempfairOddA = Math.round(tempfairOddA * 100) / 100;
         }
 
         // Go with a new object to remove properly (?) 3 properties
@@ -115,9 +127,9 @@ const getFairOdds = (
             oddH: matchesWithRatios[i].oddH,
             oddD: matchesWithRatios[i].oddD,
             oddA: matchesWithRatios[i].oddA,
-            fairOddH,
-            fairOddD,
-            fairOddA,
+            fairOddH: tempfairOddH,
+            fairOddD: tempfairOddD,
+            fairOddA: tempfairOddA,
             betAmountH: matchesWithRatios[i].betAmountH,
             betAmountD: matchesWithRatios[i].betAmountD,
             betAmountA: matchesWithRatios[i].betAmountA,
