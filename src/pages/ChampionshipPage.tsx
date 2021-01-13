@@ -24,10 +24,11 @@ const ChampionshipPage: React.FC<ChampionshipPageProps> = (props): JSX.Element =
     const [nextMatches, setNextMatches] = useState<Array<NextMatch>>([]);
     const [lastUpdate, setLastUpdate] = useState<Date>(new Date());
     const [nolastUpdateInDb, setNoLastUpdateInDb] = useState<boolean>(true);
-    const { idIndicator } = props;
+    const { champ } = props;
+    const { id, name } = champ;
 
     useEffect(() => {
-        lastUpdateApi.getByChamp(idIndicator[0]).then((res) => {
+        lastUpdateApi.getByChamp(id).then((res) => {
             if (typeof res[0] !== 'undefined') {
                 setLastUpdate(res[0].date);
                 setNoLastUpdateInDb(false);
@@ -35,23 +36,23 @@ const ChampionshipPage: React.FC<ChampionshipPageProps> = (props): JSX.Element =
                 setNoLastUpdateInDb(true);
             }
         });
-        nextMatchesApi.getAllByChamp(idIndicator[0]).then((res) => {
+        nextMatchesApi.getAllByChamp(id).then((res) => {
             setNextMatches(res);
         });
-    }, [idIndicator]);
+    }, [id]);
 
     const handleRefresh = async () => {
         // Reset current data
-        lastUpdateApi.deleteByChamp(idIndicator[0]);
-        nextMatchesApi.deleteAllByChamp(idIndicator[0]);
+        lastUpdateApi.deleteByChamp(id);
+        nextMatchesApi.deleteAllByChamp(id);
 
         // Fetch update one
-        const matches = await scrap(props);
+        const matches = await scrap(champ);
 
         // Store update data
         lastUpdateApi
             .createForChamp({
-                championship: idIndicator[0],
+                championship: id,
                 date: new Date(),
             })
             .then(() => {
@@ -65,7 +66,7 @@ const ChampionshipPage: React.FC<ChampionshipPageProps> = (props): JSX.Element =
 
     return (
         <div className="championship_page">
-            <h1>{idIndicator[2]}</h1>
+            <h1>{name}</h1>
             <div>
                 <Button purpose="refresh" color="yellow" onClick={handleRefresh}>
                     Refresh
@@ -87,11 +88,18 @@ const ChampionshipPage: React.FC<ChampionshipPageProps> = (props): JSX.Element =
 };
 
 ChampionshipPage.defaultProps = {
-    urlForNewMatches: '',
-    urlForOldMatches: '',
-    idIndicator: ['', ''],
-    capital: 1,
-    maxOdd: [0, 0, 0],
+    champ: {
+        id: '',
+        name: '',
+        path: '',
+        country: '',
+        season: '',
+        maxOdd: [],
+        equationsH: [],
+        equationsD: [],
+        equationsA: [],
+        teamsCheck: [],
+    },
 };
 
 export default ChampionshipPage;

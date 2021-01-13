@@ -1,5 +1,5 @@
 import { NextMatch } from '../ts/nextMatch.type';
-import { ChampionshipPageProps } from '../ts/championship.type';
+import { Championship } from '../ts/championship.type';
 
 import getNextMatches from './scraping/nextM';
 import getPreviousMatches from './scraping/previousM';
@@ -8,8 +8,14 @@ import getFairOdd from './valuebet/getFairOdd';
 import getBetDetails from './valuebet/getBetDetails';
 import keepOnlyNecessary from './valuebet/keepOnlyNecessary';
 
-const scrap = async (props: ChampionshipPageProps): Promise<Array<NextMatch>> => {
-    const { urlForNewMatches, urlForOldMatches, idIndicator, capital, maxOdd } = props;
+const scrap = async (props: Championship): Promise<Array<NextMatch>> => {
+    const { country, path, season, id, maxOdd, name } = props;
+    const capital = 100; // Must relocate that at some point
+
+    // Temporary
+    const urlForNewMatches = `https://www.betexplorer.com/soccer/${country}/${path}`;
+    const urlForOldMatches = `https://www.football-data.co.uk/mmz4281/${season}/${id}.csv`;
+    const idIndicator = [id, season, name];
 
     const oldM = await getPreviousMatches(urlForOldMatches);
 
