@@ -1,26 +1,56 @@
-import { MatchWithBetDetails, MatchWithFairOdd } from '../../ts/app_types';
+import { NextMatch } from '../../ts/nextMatch.type';
 
+// Finally, when there is a value bet ( bookmaker odd > fair odd ), set up a bet. Use Kelly Criterion
 const getBenefices = (
-    matchesWithFairOdd: Array<MatchWithFairOdd>,
+    matchesWithFairOdd: Array<NextMatch>,
     capital: number,
-    maxOdd: number,
-): Array<MatchWithBetDetails> => {
+    maxOdd: Array<number>,
+): Array<NextMatch> => {
     const matchWithBetDetails = [];
 
-    for (let i = 0; i < matchesWithFairOdd.length; i += 1) {
-        let betAmount = 0;
-        let betOn = false;
-        const fairOdd = matchesWithFairOdd[i].fairOddH;
-        const trueOdd = matchesWithFairOdd[i].oddH;
+    const maxOddH = maxOdd[0];
+    const maxOddD = maxOdd[1];
+    const maxOddA = maxOdd[2];
 
-        if (trueOdd > fairOdd && trueOdd < maxOdd) {
-            betOn = true;
-            const edge = trueOdd / fairOdd;
-            const percBank = (edge - 1) / (trueOdd - 1);
-            betAmount = Math.round(capital * percBank * 100) / 100;
+    for (let i = 0; i < matchesWithFairOdd.length; i += 1) {
+        let betAmountH = 0;
+        let betAmountD = 0;
+        let betAmountA = 0;
+        let betOnH = false;
+        let betOnD = false;
+        let betOnA = false;
+        const { fairOddH, fairOddD, fairOddA, oddH, oddD, oddA } = matchesWithFairOdd[i];
+
+        if (oddH > fairOddH && oddH < maxOddH) {
+            betOnH = true;
+            const edge = oddH / fairOddH;
+            const percBank = (edge - 1) / (oddH - 1);
+            betAmountH = Math.round(capital * percBank * 100) / 100;
         }
 
-        matchWithBetDetails.push({ ...matchesWithFairOdd[i], betOn, betAmount });
+        if (oddD > fairOddD && oddD < maxOddD) {
+            betOnD = true;
+            const edge = oddD / fairOddD;
+            const percBank = (edge - 1) / (oddD - 1);
+            betAmountD = Math.round(capital * percBank * 100) / 100;
+        }
+
+        if (oddA > fairOddA && oddA < maxOddA) {
+            betOnA = true;
+            const edge = oddA / fairOddA;
+            const percBank = (edge - 1) / (oddA - 1);
+            betAmountA = Math.round(capital * percBank * 100) / 100;
+        }
+
+        matchWithBetDetails.push({
+            ...matchesWithFairOdd[i],
+            betOnH,
+            betAmountH,
+            betOnD,
+            betAmountD,
+            betOnA,
+            betAmountA,
+        });
     }
 
     return matchWithBetDetails;
