@@ -2,12 +2,16 @@ import extendsData from './extends-data';
 
 import { MatchFull, PreviousMatch } from '../../ts/previousMatch.type';
 import { NextMatch, NextMatchWithRatios } from '../../ts/nextMatch.type';
-import arrangeTypes from './helpers/arrangeTypes';
+import arrangeTypes from './arrangeTypes';
 
-const turnIntoRatio = (newMatches: Array<NextMatch>, oldMatches: Array<PreviousMatch>): Array<NextMatchWithRatios> => {
+const turnIntoRatio = (
+    newMatches: Array<NextMatch>,
+    oldMatches: Array<PreviousMatch>,
+    teamsCheck: Array<Array<string>>,
+): Array<NextMatchWithRatios> => {
     // Put new matches under same format, for convenience
     // No matter if some data (Goals, corners, etc..) are wrong, because won't be used
-    const newMatchesWithArrangedType: Array<MatchFull> = arrangeTypes(newMatches);
+    const newMatchesWithArrangedType: Array<MatchFull> = arrangeTypes(newMatches, teamsCheck);
 
     // Add those matches to existing matches - it stays in date order
     const allMatches = oldMatches.concat(newMatchesWithArrangedType);

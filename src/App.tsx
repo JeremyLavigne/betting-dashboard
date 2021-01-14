@@ -7,7 +7,7 @@ import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import ChampionshipPage from './pages/ChampionshipPage';
 
-import championshipList from './utils/championshipList';
+import championshipList from './championshipList';
 
 const App: React.FC = (): JSX.Element => {
     return (

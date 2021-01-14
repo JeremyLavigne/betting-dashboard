@@ -1,21 +1,32 @@
+/* eslint-disable prefer-destructuring */
 /// ==============================================================================
 // === Arrange type of upcoming matches to fit with our existing functions
 // ==============================================================================
 
-import { NextMatch } from '../../../ts/nextMatch.type';
-import { MatchFull } from '../../../ts/previousMatch.type';
+import { NextMatch } from '../../ts/nextMatch.type';
+import { MatchFull } from '../../ts/previousMatch.type';
 
-import teamNameCheck from './teamNameCheck';
-
-const arrangeTypes = (newMatches: Array<NextMatch>): Array<MatchFull> => {
+const arrangeTypes = (newMatches: Array<NextMatch>, teamsCheck: Array<Array<string>>): Array<MatchFull> => {
     const newMatchesWithArrangedType: Array<MatchFull> = [];
 
     newMatches.forEach((m: NextMatch) => {
+        let homeTeamName = m.homeTeam;
+        let awayTeamName = m.awayTeam;
+
+        for (let i = 0; i < teamsCheck.length; i += 1) {
+            if (homeTeamName === teamsCheck[i][0]) {
+                homeTeamName = teamsCheck[i][1];
+            }
+            if (awayTeamName === teamsCheck[i][0]) {
+                awayTeamName = teamsCheck[i][1];
+            }
+        }
+
         newMatchesWithArrangedType.push({
             // Original values
             date: m.date,
-            homeTeam: teamNameCheck(m.homeTeam),
-            awayTeam: teamNameCheck(m.awayTeam),
+            homeTeam: homeTeamName,
+            awayTeam: awayTeamName,
             oddH: Number(m.oddH),
             oddD: Number(m.oddD),
             oddA: Number(m.oddA),

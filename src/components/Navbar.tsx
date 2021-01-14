@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import championshipList from '../utils/championshipList';
+import championshipList from '../championshipList';
 
 import '../style/Navbar.css';
 
