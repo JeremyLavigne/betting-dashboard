@@ -42,27 +42,23 @@ const ChampionshipPage: React.FC<ChampionshipPageProps> = (props): JSX.Element =
     }, [id]);
 
     const handleRefresh = async () => {
-        // Reset current data
-        lastUpdateApi.deleteByChamp(id);
-        nextMatchesApi.deleteAllByChamp(id);
-
-        // Fetch update one
-        const matches = await scrap(champ);
-
-        // Store update data
+        // Refresh last update
         lastUpdateApi
-            .createForChamp({
+            .updateForChamp({
                 championship: id,
                 date: new Date(),
             })
             .then(() => {
                 setLastUpdate(new Date());
             });
+
+        // Refresh matches - Delete & Re-create
+        nextMatchesApi.deleteAllByChamp(id);
+        const matches = await scrap(champ);
         nextMatchesApi.createAllForChamp(matches).then((res) => setNextMatches(res));
     };
 
     console.log(nextMatches);
-    // console.log(lastUpdate);
 
     return (
         <div className="championship_page">

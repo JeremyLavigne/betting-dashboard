@@ -22,6 +22,11 @@ const createForChamp = async (lastUpdate: LastUpdate): Promise<Array<LastUpdate>
     return response.data;
 };
 
+const updateForChamp = async (lastUpdate: LastUpdate): Promise<Array<LastUpdate>> => {
+    const response = await Api.put('/', lastUpdate);
+    return response.data;
+};
+
 const deleteByChamp = async (champ: string): Promise<string> => {
     const response = await Api.delete(`/${champ}`);
     return response.data;
@@ -31,5 +36,6 @@ export default {
     getAll,
     getByChamp,
     createForChamp,
+    updateForChamp,
     deleteByChamp,
 };
