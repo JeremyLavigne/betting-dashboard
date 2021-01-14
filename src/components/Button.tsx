@@ -18,8 +18,6 @@ Button.defaultProps = {
     onClick: () => {
         console.log('Click');
     },
-    color: 'primary',
-    purpose: 'link',
 };
 
 export default Button;

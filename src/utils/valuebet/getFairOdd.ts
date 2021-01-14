@@ -1,12 +1,14 @@
 import { NextMatch, NextMatchWithRatios } from '../../ts/nextMatch.type';
 
+// Use the ratios we created and turn them into a 'Fair odd'. i.e. our own odd.
+// ------------------------------------------------------------------------------------------
 const getFairOdds = (
     matchesWithRatios: Array<NextMatchWithRatios>,
     equationsH: Array<Array<number>>,
     equationsD: Array<Array<number>>,
     equationsA: Array<Array<number>>,
 ): Array<NextMatch> => {
-    // For more about equations, see https://github.com/JeremyLavigne/benefice-simulation
+    // ------------- Fetch the equations regarding the championship ---------------
 
     // Equations Home
     const predictS2H = (x: number) => {
@@ -69,56 +71,38 @@ const getFairOdds = (
         return 1000;
     };
 
+    // ----------------- Use thoses equations to find fair odds -------------------
+
     const matchesWithFairOdd: Array<NextMatch> = [];
     for (let i = 0; i < matchesWithRatios.length; i += 1) {
-        const fairOddHomeWithS2 = Math.round((1 / predictS2H(matchesWithRatios[i].s2GameFormRatio)) * 100) / 100;
-        const fairOddHomeWithS7 = Math.round((1 / predictS7H(matchesWithRatios[i].s7PowerRatingRatio)) * 100) / 100;
-        const fairOddHomeWithS9 = Math.round((1 / predictS9H(matchesWithRatios[i].s9PpsRatio)) * 100) / 100;
+        const fairOddHomeWithS2 = 1 / predictS2H(matchesWithRatios[i].s2GameFormRatio);
+        const fairOddHomeWithS7 = 1 / predictS7H(matchesWithRatios[i].s7PowerRatingRatio);
+        const fairOddHomeWithS9 = 1 / predictS9H(matchesWithRatios[i].s9PpsRatio);
 
-        const fairOddDrawWithS2 = Math.round((1 / predictS2D(matchesWithRatios[i].s2GameFormRatio)) * 100) / 100;
-        const fairOddDrawWithS7 = Math.round((1 / predictS7D(matchesWithRatios[i].s7PowerRatingRatio)) * 100) / 100;
-        const fairOddDrawWithS9 = Math.round((1 / predictS9D(matchesWithRatios[i].s9PpsRatio)) * 100) / 100;
+        const fairOddDrawWithS2 = 1 / predictS2D(matchesWithRatios[i].s2GameFormRatio);
+        const fairOddDrawWithS7 = 1 / predictS7D(matchesWithRatios[i].s7PowerRatingRatio);
+        const fairOddDrawWithS9 = 1 / predictS9D(matchesWithRatios[i].s9PpsRatio);
 
-        const fairOddAwayWithS2 = Math.round((1 / predictS2A(matchesWithRatios[i].s2GameFormRatio)) * 100) / 100;
-        const fairOddAwayWithS7 = Math.round((1 / predictS7A(matchesWithRatios[i].s7PowerRatingRatio)) * 100) / 100;
-        const fairOddAwayWithS9 = Math.round((1 / predictS9A(matchesWithRatios[i].s9PpsRatio)) * 100) / 100;
+        const fairOddAwayWithS2 = 1 / predictS2A(matchesWithRatios[i].s2GameFormRatio);
+        const fairOddAwayWithS7 = 1 / predictS7A(matchesWithRatios[i].s7PowerRatingRatio);
+        const fairOddAwayWithS9 = 1 / predictS9A(matchesWithRatios[i].s9PpsRatio);
 
-        let tempfairOddH = (fairOddHomeWithS2 + fairOddHomeWithS7 + fairOddHomeWithS9) / 3;
-        let tempfairOddD = (fairOddDrawWithS2 + fairOddDrawWithS7 + fairOddDrawWithS9) / 3;
-        let tempfairOddA = (fairOddAwayWithS2 + fairOddAwayWithS7 + fairOddAwayWithS9) / 3;
+        let tempfairOddH = Math.round(((fairOddHomeWithS2 + fairOddHomeWithS7 + fairOddHomeWithS9) / 3) * 100) / 100;
+        let tempfairOddD = Math.round(((fairOddDrawWithS2 + fairOddDrawWithS7 + fairOddDrawWithS9) / 3) * 100) / 100;
+        let tempfairOddA = Math.round(((fairOddAwayWithS2 + fairOddAwayWithS7 + fairOddAwayWithS9) / 3) * 100) / 100;
 
-        // console.log(
-        //     fairOddHomeWithS2,
-        //     fairOddHomeWithS7,
-        //     fairOddHomeWithS9,
-        //     fairOddDrawWithS2,
-        //     fairOddDrawWithS7,
-        //     fairOddDrawWithS9,
-        //     fairOddAwayWithS2,
-        //     fairOddAwayWithS7,
-        //     fairOddAwayWithS9,
-        // );
-
-        // Sometimes, when big odd for example, predict can return a negative value.
+        // Sometimes, when big odd for example, predict can return a non exploitable value.
         if (Number.isNaN(tempfairOddH) || tempfairOddH < 1) {
             tempfairOddH = 50; // Put arbitrary a huge odd (= no bet on this one);
-        } else {
-            tempfairOddH = Math.round(tempfairOddH * 100) / 100;
         }
-
         if (Number.isNaN(tempfairOddD) || tempfairOddD < 1) {
             tempfairOddD = 50;
-        } else {
-            tempfairOddD = Math.round(tempfairOddD * 100) / 100;
         }
-
         if (Number.isNaN(tempfairOddA) || tempfairOddA < 1) {
             tempfairOddA = 50;
-        } else {
-            tempfairOddA = Math.round(tempfairOddA * 100) / 100;
         }
 
-        // Go with a new object to remove properly (?) 3 properties
+        // Go through a new object to remove (properly ?) 3 properties.
         matchesWithFairOdd.push({
             championship: matchesWithRatios[i].championship,
             date: matchesWithRatios[i].date,

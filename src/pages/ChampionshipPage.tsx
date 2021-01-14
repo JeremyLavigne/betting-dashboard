@@ -1,25 +1,20 @@
 import React, { useEffect, useState } from 'react';
 
-// Types
 import { NextMatch } from '../ts/nextMatch.type';
 import { ChampionshipPageProps } from '../ts/championship.type';
 
-// Components
 import MatchLine from '../components/MatchLine';
 import Button from '../components/Button';
 
-// Methods
 import scrap from '../utils/scrap';
 
-// Api
 import lastUpdateApi from '../api/lastUpdate';
 import nextMatchesApi from '../api/nextMatches';
 
-// Css
 import '../style/ChampionshipPage.css';
 
+// One page with all upcoming matches for one championship
 // ================================================================================
-
 const ChampionshipPage: React.FC<ChampionshipPageProps> = (props): JSX.Element => {
     const [nextMatches, setNextMatches] = useState<Array<NextMatch>>([]);
     const [lastUpdate, setLastUpdate] = useState<Date>(new Date());

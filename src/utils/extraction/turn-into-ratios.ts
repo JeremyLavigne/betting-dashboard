@@ -4,12 +4,13 @@ import { MatchFull, PreviousMatch } from '../../ts/previousMatch.type';
 import { NextMatch, NextMatchWithRatios } from '../../ts/nextMatch.type';
 import arrangeTypes from './arrangeTypes';
 
+// Take all original data, mix it, shake it, ... and return only what we need, i.e. "Matchs with Ratios"
 const turnIntoRatio = (
     newMatches: Array<NextMatch>,
     oldMatches: Array<PreviousMatch>,
     teamsCheck: Array<Array<string>>,
 ): Array<NextMatchWithRatios> => {
-    // Put new matches under same format, for convenience
+    // Put new matches under same format as old ones, for convenience
     // No matter if some data (Goals, corners, etc..) are wrong, because won't be used
     const newMatchesWithArrangedType: Array<MatchFull> = arrangeTypes(newMatches, teamsCheck);
 
@@ -19,11 +20,10 @@ const turnIntoRatio = (
     // Need old matches to have the whole history and get ratios for new ones
     const transformedMatches = extendsData(allMatches);
 
-    // console.log(transformedMatches);
-
-    // No need to work with old ones anymore
+    // No need to carry old ones anymore
     const transformedNewMatches = transformedMatches.slice(oldMatches.length);
 
+    // Calcul ratios for each match remaining.
     const newMatchesWithRatios = [];
     for (let i = 0; i < transformedNewMatches.length; i += 1) {
         const {
@@ -44,10 +44,13 @@ const turnIntoRatio = (
             break; // Stop the loop when data become unuseful
         }
 
+        // Game Form
         const s2 = (homeTeamGameFormPointsOn6 - awayTeamGameFormPointsOn6) / 8;
 
+        // Power Rating
         const s7 = homeTeamPowerRating - awayTeamPowerRating;
 
+        // PPS
         const s9 =
             homeTeamPpsPointsTotal / (homeTeamMatchNumber - 1) - awayTeamPpsPointsTotal / (awayTeamMatchNumber - 1);
 

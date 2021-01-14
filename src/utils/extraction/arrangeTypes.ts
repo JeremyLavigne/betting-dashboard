@@ -1,15 +1,14 @@
 /* eslint-disable prefer-destructuring */
-/// ==============================================================================
-// === Arrange type of upcoming matches to fit with our existing functions
-// ==============================================================================
-
 import { NextMatch } from '../../ts/nextMatch.type';
 import { MatchFull } from '../../ts/previousMatch.type';
 
+// Harmonise type between the two sources / types we use.
+// -----------------------------------------------------------------------------------------------
 const arrangeTypes = (newMatches: Array<NextMatch>, teamsCheck: Array<Array<string>>): Array<MatchFull> => {
     const newMatchesWithArrangedType: Array<MatchFull> = [];
 
     newMatches.forEach((m: NextMatch) => {
+        // Need to have the same team name - see championshipList.js
         let homeTeamName = m.homeTeam;
         let awayTeamName = m.awayTeam;
 

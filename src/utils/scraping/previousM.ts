@@ -3,10 +3,11 @@ import axios from 'axios';
 
 import { PreviousMatch } from '../../ts/previousMatch.type';
 
+// Get all matches played since the beginning of the season. Source : football-data.co.uk - CSV format
+// -----------------------------------------------------------------------------------------------------
 const getMatches = async (url: string): Promise<Array<PreviousMatch>> => {
     const matches: Array<PreviousMatch> = [];
 
-    // First fetch data from online csv file
     const response = await axios.get(url);
     await csv()
         .fromString(response.data)

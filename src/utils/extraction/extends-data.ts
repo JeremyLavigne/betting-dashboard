@@ -1,7 +1,6 @@
-// ==============================================================================
-
 import { PreviousMatch, MatchFull } from '../../ts/previousMatch.type';
 
+// Default is used when looking for previous matches - Can't find a  match before the first one
 const defaultMatch = {
     homeTeam: '',
     awayTeam: '',
@@ -35,6 +34,8 @@ const defaultMatch = {
     awayTeamPowerRatingAdjustment: 0,
 };
 
+// Extends original data with more properties - Properties we actually need to calcultate Ratios
+// ----------------------------------------------------------------------------------------------------
 const extendsData = (db: Array<PreviousMatch>): Array<MatchFull> => {
     const newDb: Array<MatchFull> = [];
 
@@ -200,11 +201,9 @@ const extendsData = (db: Array<PreviousMatch>): Array<MatchFull> => {
         }
 
         // --------------------------------- Power Rating -----------------------------------------------
-        // Local variables
         let homeTeamPowerRating = 20;
         let awayTeamPowerRating = 20;
 
-        // Diff Match matches ago
         if (homeTeamPreviousMatch.homeTeam === match.homeTeam) {
             homeTeamPowerRating =
                 homeTeamPreviousMatch.homeTeamPowerRating + homeTeamPreviousMatch.homeTeamPowerRatingAdjustment;
@@ -224,6 +223,7 @@ const extendsData = (db: Array<PreviousMatch>): Array<MatchFull> => {
         homeTeamPowerRating = Math.round((homeTeamPowerRating + Number.EPSILON) * 1000) / 1000;
         awayTeamPowerRating = Math.round((awayTeamPowerRating + Number.EPSILON) * 1000) / 1000;
 
+        // Adjustment
         let adjuster = 0;
         if (typeof homeTeamPowerRating !== 'undefined') {
             const prediction = homeTeamPowerRating - awayTeamPowerRating + 0.2;
@@ -235,6 +235,7 @@ const extendsData = (db: Array<PreviousMatch>): Array<MatchFull> => {
         const homeTeamPowerRatingAdjustment = adjuster;
         const awayTeamPowerRatingAdjustment = -adjuster;
 
+        // --------------------------------- Wrap it up -----------------------------------------------
         newDb.push({
             ...match,
             ppsResult,

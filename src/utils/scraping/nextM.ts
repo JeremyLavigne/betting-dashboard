@@ -3,7 +3,7 @@ import cheerio from 'cheerio';
 
 import { NextMatch } from '../../ts/nextMatch.type';
 
-// Return a Promise with expected Array
+// Scraping betexplorer website to receive upcoming matches (team, date & odds)
 const getMatches = async (url: string, id: string): Promise<Array<NextMatch>> => {
     const page = await axios.get(url);
 
@@ -14,8 +14,7 @@ const getMatches = async (url: string, id: string): Promise<Array<NextMatch>> =>
 
     const $ = cheerio.load(page.data);
 
-    // Filter to remove live or finished matches
-    // (parent of parent have no class except in that case)
+    // Filter to remove live or finished matches - (parent of parent have no class except in that case)
     const teams: Array<Array<string>> = [];
     $('.table-main--leaguefixtures .in-match')
         .filter((i, el) => typeof $(el).parent().parent().attr('class') === 'undefined')
@@ -35,9 +34,7 @@ const getMatches = async (url: string, id: string): Promise<Array<NextMatch>> =>
             dates.push($(el).text());
         });
 
-    // Same as teams, filter to remove live or finished matches
-    // 3 times more odds than dates or teams.
-    // Odds always in order : Home-Draw-Away
+    // 3 times more odds than dates or teams. Odds always in order : Home-Draw-Away
     const odds: Array<string | undefined> = [];
     $('.table-main--leaguefixtures .table-main__odds')
         .filter((i, el) => typeof $(el).parent().attr('class') === 'undefined')
@@ -73,7 +70,7 @@ const getMatches = async (url: string, id: string): Promise<Array<NextMatch>> =>
             oddH: Number(odds[i]),
             oddD: Number(odds[i + 1]),
             oddA: Number(odds[i + 2]),
-            // Default properties
+            // Default properties - to match a single object type
             fairOddH: 50,
             fairOddD: 50,
             fairOddA: 50,

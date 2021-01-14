@@ -1,4 +1,4 @@
-// Match after adding and calculating properties we need
+// Match object when scraping it from web
 export interface PreviousMatch {
     homeTeam: string;
     awayTeam: string;
@@ -19,7 +19,7 @@ export interface PreviousMatch {
     oddA: number;
 }
 
-// Match after adding and calculating properties we need
+// Match object after adding and calculating properties we need
 export interface MatchFull {
     homeTeam: string;
     awayTeam: string;

@@ -1,5 +1,6 @@
 import { NextMatch } from '../../ts/nextMatch.type';
 
+// Finally, when there is a value bet ( bookmaker odd > fair odd ), set up a bet. Use Kelly Criterion
 const getBenefices = (
     matchesWithFairOdd: Array<NextMatch>,
     capital: number,
