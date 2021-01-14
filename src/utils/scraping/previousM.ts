@@ -13,8 +13,9 @@ const getMatches = async (url: string): Promise<Array<PreviousMatch>> => {
         .then((data) => {
             // Then format data as we want
             data.forEach((json) => {
+                const dateRightFormat = `${json.Date.substr(3, 2)}/${json.Date.substr(0, 2)}/${json.Date.substr(6, 4)}`;
                 matches.push({
-                    date: new Date(json.Date),
+                    date: new Date(dateRightFormat),
                     homeTeam: json.HomeTeam,
                     awayTeam: json.AwayTeam,
                     homeTeamGoalsFor: Number(json.FTHG),

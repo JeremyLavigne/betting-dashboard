@@ -36,6 +36,8 @@ const getMatches = async (url: string, id: string): Promise<Array<NextMatch>> =>
         });
 
     // Same as teams, filter to remove live or finished matches
+    // 3 times more odds than dates or teams.
+    // Odds always in order : Home-Draw-Away
     const odds: Array<string | undefined> = [];
     $('.table-main--leaguefixtures .table-main__odds')
         .filter((i, el) => typeof $(el).parent().attr('class') === 'undefined')
@@ -44,15 +46,11 @@ const getMatches = async (url: string, id: string): Promise<Array<NextMatch>> =>
         });
 
     const matches: Array<NextMatch> = [];
-    // 3 times more odds than dates or teams.
-    // Odds always in order : Home-Draw-Away
     for (let i = 0; i < odds.length; i += 3) {
-        // Received a date like that: 12/09/2020 or 12.09 18:00 or 'Today ..' or 'Tomorrow ...'
+        // Fix date format - Received a date like that: 12.09 18:00 or 'Today ..' or 'Tomorrow ...'
         const day = dates[i / 3]?.substr(0, 2);
         const month = dates[i / 3]?.substr(3, 2);
-        const year = dates[i / 3]?.substr(6, 4);
 
-        // Want a date like that: 09/12/2020
         let dateRightFormat = '';
         if (month === 'ay') {
             // Means we have a date like 'Today ...'
@@ -63,8 +61,6 @@ const getMatches = async (url: string, id: string): Promise<Array<NextMatch>> =>
             const tomorrow = new Date(today);
             tomorrow.setDate(tomorrow.getDate() + 1);
             dateRightFormat = tomorrow.toString();
-        } else if (year?.includes(':')) {
-            dateRightFormat = `${month}/${day}/${year}`;
         } else {
             dateRightFormat = `${month}/${day}/${new Date().getFullYear()}`;
         }
