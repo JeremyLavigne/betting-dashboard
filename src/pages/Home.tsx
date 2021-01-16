@@ -7,7 +7,6 @@ import nextMatchesApi from '../api/nextMatches';
 
 import scrap from '../utils/scrap';
 
-import '../style/Home.css';
 import { NextMatch } from '../ts/nextMatch.type';
 import lastUpdateApi from '../api/lastUpdate';
 
@@ -55,7 +54,7 @@ const Home: React.FC = (): JSX.Element => {
     };
 
     return (
-        <div id="home_page">
+        <div className="home-page">
             <h1>Home</h1>
             <div>
                 Currently : <br />
@@ -72,7 +71,7 @@ const Home: React.FC = (): JSX.Element => {
                     Last update : {lastUpdate.toString().substr(0, 10)} - {lastUpdate.toString().substr(11, 5)}
                 </span>
             </div>
-            <div className="home_page_text">
+            <div className="home-page__about">
                 <h3>About</h3>
                 <p>
                     If you landed here, it probably means you clone the repo on Github, so, let´s say you deserve a

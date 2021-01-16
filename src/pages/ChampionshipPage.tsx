@@ -7,8 +7,6 @@ import MatchLine from '../components/MatchLine';
 
 import nextMatchesApi from '../api/nextMatches';
 
-import '../style/ChampionshipPage.css';
-
 // One page with all upcoming matches for one championship
 // ================================================================================
 const ChampionshipPage: React.FC<ChampionshipPageProps> = (props): JSX.Element => {
@@ -25,9 +23,9 @@ const ChampionshipPage: React.FC<ChampionshipPageProps> = (props): JSX.Element =
     console.log(nextMatches);
 
     return (
-        <div className="championship_page">
+        <div className="championship-page">
             <h1>{name}</h1>
-            <div className="championship_next_matches">
+            <div className="championship-page__next-matches">
                 <h3>Next matches</h3>
                 {nextMatches.map((m) => (
                     <MatchLine key={`${m.homeTeam}-${m.date}`} match={m} />

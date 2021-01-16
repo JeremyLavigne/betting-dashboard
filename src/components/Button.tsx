@@ -1,7 +1,5 @@
 import React from 'react';
 
-import '../style/Button.css';
-
 interface ButtonProps {
     onClick: React.MouseEventHandler<HTMLButtonElement>;
     color?: string;
