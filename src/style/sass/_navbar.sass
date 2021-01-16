@@ -1,22 +1,23 @@
-nav
-    background: $green
-    padding: small
-    min-width: $menu-width
+.main-menu
+    background: $nav-background-color
+    min-width: $nav-width
     width: 15%
+    padding: 5px
     display: flex
     flex-direction: column
 
-.menu_champ_link
-    margin-top: small
-    color: $white
-    text-decoration: none
-    font-size: medium
-    color: $grey-white
+    .menu-link
+        margin-top: 10px
+        text-decoration: none
+        color: $grey-white
 
-.menu_home_link
-    margin-top: medium
-    margin-bottom: large
-    text-align: center
-    color: $white
-    text-decoration: none
-    font-size: large
+        &__champ
+            font-size: large
+
+        &__home
+            margin-bottom: large
+            text-align: center
+            font-size: x-large
+
+            &:visited
+                color: $text-color

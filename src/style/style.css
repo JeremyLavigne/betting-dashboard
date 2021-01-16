@@ -108,30 +108,29 @@
   margin-left: x-large;
 }
 
-nav {
+.main-menu {
   background: #326f52;
-  padding: small;
   min-width: 120px;
   width: 15%;
+  padding: 5px;
   display: flex;
   flex-direction: column;
 }
-
-.menu_champ_link {
-  margin-top: small;
-  color: white;
+.main-menu .menu-link {
+  margin-top: 10px;
   text-decoration: none;
-  font-size: medium;
   color: #c7c7c7;
 }
-
-.menu_home_link {
-  margin-top: medium;
+.main-menu .menu-link__champ {
+  font-size: large;
+}
+.main-menu .menu-link__home {
   margin-bottom: large;
   text-align: center;
+  font-size: x-large;
+}
+.main-menu .menu-link__home:visited {
   color: white;
-  text-decoration: none;
-  font-size: large;
 }
 
 body {
