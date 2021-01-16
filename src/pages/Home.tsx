@@ -7,7 +7,6 @@ import nextMatchesApi from '../api/nextMatches';
 
 import scrap from '../utils/scrap';
 
-import '../style/Home.css';
 import { NextMatch } from '../ts/nextMatch.type';
 import lastUpdateApi from '../api/lastUpdate';
 

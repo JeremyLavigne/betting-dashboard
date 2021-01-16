@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom';
 
 import championshipList from '../championshipList';
 
-import '../style/Navbar.css';
-
 const Navbar: React.FC = (): JSX.Element => {
     return (
         <nav>

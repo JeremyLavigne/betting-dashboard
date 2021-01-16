@@ -7,8 +7,6 @@ import MatchLine from '../components/MatchLine';
 
 import nextMatchesApi from '../api/nextMatches';
 
-import '../style/ChampionshipPage.css';
-
 // One page with all upcoming matches for one championship
 // ================================================================================
 const ChampionshipPage: React.FC<ChampionshipPageProps> = (props): JSX.Element => {

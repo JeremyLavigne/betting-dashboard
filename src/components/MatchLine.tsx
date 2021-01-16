@@ -2,8 +2,6 @@ import React from 'react';
 
 import { NextMatch } from '../ts/nextMatch.type';
 
-import '../style/MatchLine.css';
-
 interface MatchLineProps {
     match: NextMatch;
 }

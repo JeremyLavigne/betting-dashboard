@@ -6,7 +6,7 @@
     "scripts": {
         "start": "webpack serve --open google-chrome --mode development",
         "build": "webpack --mode production",
-        "test": "jest",
+        "sass": "sass --watch src/style/sass/style.sass src/style/style.css",
         "lint": "eslint"
     },
     "keywords": [
@@ -57,6 +57,7 @@
         "eslint-plugin-react": "^7.21.5",
         "eslint-plugin-react-hooks": "^4.2.0",
         "prettier": "^2.2.1",
+        "sass": "^1.32.4",
         "source-map-loader": "^2.0.0",
         "style-loader": "^2.0.0",
         "ts-node": "^9.1.1",
