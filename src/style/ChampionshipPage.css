@@ -13,9 +13,3 @@
     padding-top: var(--margin-md);
     padding-bottom: var(--margin-md);
 }
-
-.championship_last_update {
-    font-size: var(--font-xsm);
-    color: var(--grey-white);
-    font-style: italic;
-}

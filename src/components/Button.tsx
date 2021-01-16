@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './Button.css';
+import '../style/Button.css';
 
 interface ButtonProps {
     onClick: React.MouseEventHandler<HTMLButtonElement>;
@@ -18,8 +18,6 @@ Button.defaultProps = {
     onClick: () => {
         console.log('Click');
     },
-    color: 'primary',
-    purpose: 'link',
 };
 
 export default Button;

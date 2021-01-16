@@ -18,8 +18,15 @@
     justify-content: center;
     margin: auto;
     margin-top: var(--margin-xlg);
+    border-top: 2px solid var(--white);
 }
 
 .home_page_text p {
     width: 100%;
+}
+
+.last_update {
+    font-size: var(--font-xsm);
+    color: var(--grey-white);
+    font-style: italic;
 }

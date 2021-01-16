@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { NextMatch } from '../ts/db_types';
+import { NextMatch } from '../ts/nextMatch.type';
 
 const BASE_URL = 'http://localhost:3001/api/next-matches';
 

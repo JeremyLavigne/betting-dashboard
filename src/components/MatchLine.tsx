@@ -1,13 +1,15 @@
 import React from 'react';
 
-import './MatchLine.css';
+import { NextMatch } from '../ts/nextMatch.type';
 
-import { NextMatch } from '../../ts/db_types';
+import '../style/MatchLine.css';
 
 interface MatchLineProps {
     match: NextMatch;
 }
 
+// One Line, display all Match details : teams, odds, bet, etc..
+// -------------------------------------------------------------------------------------------------------
 const MatchLine: React.FC<MatchLineProps> = ({ match }): JSX.Element => {
     return (
         <div className="match-line">
