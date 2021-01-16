@@ -1,27 +1,31 @@
-#home_page
+.home-page
     width: 100%
+    font-size: medium
 
-#home_page h1
-    text-align: center
-    background-color: grey
-    font-size: large
-    padding-top: medium
-    padding-bottom: medium
+    h1
+        text-align: center 
+        background-color: $main-title-color
+        font-size: xx-large
+        padding-top: 10px
+        padding-bottom: 10px
 
-.home_page_text
-    width: 80%
-    display: flex
-    flex-direction: column
-    align-items: center
-    justify-content: center
-    margin: auto
-    margin-top: x-large
-    border-top: 2px solid $grey-white
+    .last_update
+        font-size: small
+        color: $text-color-secondary
+        font-style: italic
 
-.home_page_text p
-    width: 100%
+    &__about
+        width: 80%
+        display: flex
+        flex-direction: column
+        align-items: center
+        justify-content: center
+        margin: auto
+        margin-top: 20px
+        border-top: 2px solid $text-color-secondary
 
-.last_update
-    font-size: x-small
-    color: $grey-white
-    font-style: italic
+        h3
+            font-size: x-large
+
+        p
+            width: 100%
