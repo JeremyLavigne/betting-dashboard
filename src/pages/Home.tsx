@@ -1,58 +1,11 @@
-import React, { useState, useEffect } from 'react';
-
-import Button from '../components/Button';
-
-import championshipList from '../championshipList';
-import nextMatchesApi from '../api/nextMatches';
-
-import scrap from '../utils/scrap';
-
+import React from 'react';
 import { NextMatch } from '../ts/nextMatch.type';
-import lastUpdateApi from '../api/lastUpdate';
 
-const Home: React.FC = (): JSX.Element => {
-    const [allMatches, setAllMatches] = useState<Array<NextMatch>>([]);
-    const [lastUpdate, setLastUpdate] = useState<Date>(new Date());
+interface HomeProps {
+    allMatches: Array<NextMatch>;
+}
 
-    useEffect(() => {
-        nextMatchesApi.getAll().then((res) => {
-            setAllMatches(res);
-        });
-        lastUpdateApi.getAll().then((res) => {
-            setLastUpdate(res[0].date);
-        });
-    }, []);
-
-    const handleRefresh = async () => {
-        const matchesPromises = [];
-        for (let i = 0; i < championshipList.length; i += 1) {
-            // Delete
-            nextMatchesApi.deleteAllByChamp(championshipList[i].id);
-            // Fetch
-            matchesPromises.push(scrap(championshipList[i]));
-        }
-
-        // Wait for it
-        const matches = await Promise.all(matchesPromises); // Array<Array<NextMatch>> i.e. one array for each champiponship
-        const matchesAll: Array<NextMatch> = []; // Array<NextMatch> i.e. one array with all matches inside
-
-        for (let i = 0; i < matches.length; i += 1) {
-            // Store
-            nextMatchesApi.createAllForChamp(matches[i]).then(() => matchesAll.concat(matches[i]));
-        }
-
-        // Update variable
-        setAllMatches(matchesAll);
-
-        // Update last update date -  it is a lot of date
-        lastUpdateApi
-            .update({
-                championship: 'All',
-                date: new Date(),
-            })
-            .then((res) => setLastUpdate(res[0].date));
-    };
-
+const Home: React.FC<HomeProps> = ({ allMatches }): JSX.Element => {
     return (
         <div className="home-page">
             <h1>Home</h1>
@@ -62,14 +15,6 @@ const Home: React.FC = (): JSX.Element => {
                     <li>{allMatches.length} matches are going to be played</li>
                     <li>{allMatches.filter((m) => m.betOnA || m.betOnD || m.betOnH).length} values found</li>
                 </ul>
-            </div>
-            <div>
-                <Button purpose="refresh" color="yellow" onClick={handleRefresh}>
-                    Refresh
-                </Button>
-                <span className="last_update">
-                    Last update : {lastUpdate.toString().substr(0, 10)} - {lastUpdate.toString().substr(11, 5)}
-                </span>
             </div>
             <div className="home-page__about">
                 <h3>About</h3>
