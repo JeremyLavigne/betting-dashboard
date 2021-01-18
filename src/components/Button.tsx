@@ -7,7 +7,7 @@ interface ButtonProps {
 }
 
 const Button: React.FC<ButtonProps> = ({ onClick, color, purpose, children }): JSX.Element => (
-    <button type="button" className={`${purpose} button-${color}`} onClick={onClick}>
+    <button type="button" className={`btn btn-${purpose} btn-${purpose}--${color}`} onClick={onClick}>
         {children}
     </button>
 );

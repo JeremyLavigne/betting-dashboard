@@ -1,11 +1,14 @@
-.refresh {
+.btn {
   padding: 5px;
   margin: 5px;
-  font-size: medium;
-  border-radius: 10%;
 }
 
-.button-yellow {
+.btn-refresh {
+  font-size: medium;
+  border-radius: 10%;
+  margin-top: 0;
+}
+.btn-refresh--yellow {
   background-color: #fce450;
 }
 
@@ -36,11 +39,6 @@
   font-size: xx-large;
   padding-top: 10px;
   padding-bottom: 10px;
-}
-.home-page .last_update {
-  font-size: small;
-  color: #c7c7c7;
-  font-style: italic;
 }
 .home-page__about {
   width: 80%;
@@ -123,6 +121,18 @@
 }
 .main-menu .menu-link__home:visited {
   color: white;
+}
+
+.last-update {
+  display: flex;
+  position: absolute;
+  top: 30px;
+  right: 20px;
+}
+.last-update__text {
+  font-size: small;
+  color: #c7c7c7;
+  font-style: italic;
 }
 
 body {
