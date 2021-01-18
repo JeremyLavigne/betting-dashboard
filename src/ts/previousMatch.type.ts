@@ -2,7 +2,7 @@
 export interface PreviousMatch {
     homeTeam: string;
     awayTeam: string;
-    date: Date;
+    date: string;
     homeTeamGoalsFor: number;
     awayTeamGoalsFor: number;
     homeTeamGoalsAgainst: number;
@@ -23,7 +23,7 @@ export interface PreviousMatch {
 export interface MatchFull {
     homeTeam: string;
     awayTeam: string;
-    date: Date;
+    date: string;
     homeTeamGoalsFor: number;
     awayTeamGoalsFor: number;
     homeTeamGoalsAgainst: number;

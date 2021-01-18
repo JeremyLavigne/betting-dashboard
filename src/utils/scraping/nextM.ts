@@ -66,7 +66,7 @@ const getMatches = async (url: string, id: string): Promise<Array<NextMatch>> =>
             championship: id,
             homeTeam: teams[i / 3][0],
             awayTeam: teams[i / 3][1],
-            date: new Date(dateRightFormat),
+            date: new Date(dateRightFormat).toISOString(),
             oddH: Number(odds[i]),
             oddD: Number(odds[i + 1]),
             oddA: Number(odds[i + 2]),

@@ -11,6 +11,9 @@
 .btn-refresh--yellow {
   background-color: #fce450;
 }
+.btn-refresh--red {
+  background-color: #ce2418;
+}
 
 .championship-page {
   width: 100%;

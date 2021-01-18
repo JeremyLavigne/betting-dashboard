@@ -16,7 +16,7 @@ const getMatches = async (url: string): Promise<Array<PreviousMatch>> => {
             data.forEach((json) => {
                 const dateRightFormat = `${json.Date.substr(3, 2)}/${json.Date.substr(0, 2)}/${json.Date.substr(6, 4)}`;
                 matches.push({
-                    date: new Date(dateRightFormat),
+                    date: new Date(dateRightFormat).toISOString(),
                     homeTeam: json.HomeTeam,
                     awayTeam: json.AwayTeam,
                     homeTeamGoalsFor: Number(json.FTHG),

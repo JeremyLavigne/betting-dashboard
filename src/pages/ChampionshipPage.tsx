@@ -17,9 +17,11 @@ const ChampionshipPage: React.FC<ChampionshipPageProps> = ({ nextMatches, name }
             <h1>{name}</h1>
             <div className="championship-page__next-matches">
                 <h3>Next matches</h3>
-                {nextMatches.map((m) => (
-                    <MatchLine key={`${m.homeTeam}-${m.date}`} match={m} />
-                ))}
+                {nextMatches
+                    .sort((m1, m2) => new Date(m1.date).getTime() - new Date(m2.date).getTime())
+                    .map((m) => (
+                        <MatchLine key={`${m.homeTeam}-${m.date}`} match={m} />
+                    ))}
             </div>
         </div>
     );
