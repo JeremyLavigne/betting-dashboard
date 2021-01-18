@@ -26,13 +26,20 @@ const MatchLine: React.FC<MatchLineProps> = ({ match }): JSX.Element => {
             </div>
             {match.betOnH && (
                 <div className="match-line__secondary">
-                    Bet {match.betAmountH} kr on {match.homeTeam}
+                    Bet <span className="match-line__secondary--strong">{match.betAmountH}</span> kr on
+                    <span className="match-line__secondary--strong">{match.homeTeam}</span>
                 </div>
             )}
-            {match.betOnD && <div className="match-line__secondary">Bet {match.betAmountD} kr on Draw</div>}
+            {match.betOnD && (
+                <div className="match-line__secondary">
+                    Bet <span className="match-line__secondary--strong">{match.betAmountD}</span> kr on
+                    <span className="match-line__secondary--strong">Draw</span>
+                </div>
+            )}
             {match.betOnA && (
                 <div className="match-line__secondary">
-                    Bet {match.betAmountA} kr on {match.awayTeam}
+                    Bet <span className="match-line__secondary--strong">{match.betAmountA}</span> kr on
+                    <span className="match-line__secondary--strong">{match.awayTeam}</span>
                 </div>
             )}
         </div>

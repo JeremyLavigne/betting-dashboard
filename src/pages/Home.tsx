@@ -6,16 +6,39 @@ interface HomeProps {
 }
 
 const Home: React.FC<HomeProps> = ({ allMatches }): JSX.Element => {
+    // Variables
+    const numberOfMatches = allMatches.length;
+    const numberOfValues = allMatches.filter((m) => m.betOnA || m.betOnD || m.betOnH).length;
+    const betAmountTotal = Math.round(
+        allMatches.map((m) => m.betAmountH + m.betAmountD + m.betAmountA).reduce((acc, curr) => acc + curr, 0),
+    );
+
+    const todaysMatches = allMatches.filter((m) => new Date(m.date).getDate() === new Date().getDate());
+    const numberOfMatchesToday = todaysMatches.length;
+    const numberOfValuesToday = todaysMatches.filter((m) => m.betOnA || m.betOnD || m.betOnH).length;
+    const betAmountTotalToday = Math.round(
+        todaysMatches.map((m) => m.betAmountH + m.betAmountD + m.betAmountA).reduce((acc, curr) => acc + curr, 0),
+    );
+
     return (
         <div className="home-page">
             <h1>Home</h1>
-            <div>
-                Currently : <br />
+
+            <div className="home-page__overview">
+                <h3>Overview</h3>
                 <ul>
-                    <li>{allMatches.length} matches are going to be played</li>
-                    <li>{allMatches.filter((m) => m.betOnA || m.betOnD || m.betOnH).length} values found</li>
+                    <li>{numberOfMatches} matches.</li>
+                    <li>{numberOfValues} values.</li>
+                    <li>{betAmountTotal} Kr to bet.</li>
+                </ul>
+                <h3>Today</h3>
+                <ul>
+                    <li>{numberOfMatchesToday} matches.</li>
+                    <li>{numberOfValuesToday} values.</li>
+                    <li>{betAmountTotalToday} Kr to bet.</li>
                 </ul>
             </div>
+
             <div className="home-page__about">
                 <h3>About</h3>
                 <p>
@@ -35,7 +58,7 @@ const Home: React.FC<HomeProps> = ({ allMatches }): JSX.Element => {
                     The other purpose is to code and apply coding skills, this app is made with React, Typescript,
                     Webpack.
                 </p>
-                <p>It is version 1.0.0, please do not expect too much for now :-)</p>
+                <p>It is version 1.0.2, please do not expect too much for now :-)</p>
             </div>
         </div>
     );

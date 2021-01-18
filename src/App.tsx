@@ -47,6 +47,8 @@ const App: React.FC = (): JSX.Element => {
         }
     }, [lastUpdate]);
 
+    console.log(allMatches);
+
     // ---------------------- Deal with Refresh Action ---------------------------------
     const handleRefresh = async () => {
         const matchesPromises = [];
@@ -83,7 +85,7 @@ const App: React.FC = (): JSX.Element => {
     // ---------------------------------------------------------------------------------------
     return (
         <Router>
-            <Navbar allMatches={allMatches.filter((m) => new Date(m.date) > new Date())} />
+            <Navbar allMatches={allMatches.filter((m) => new Date(m.date) >= new Date())} />
             <div className="last-update">
                 {refreshStatus !== 'clear' && (
                     <div>
@@ -105,14 +107,14 @@ const App: React.FC = (): JSX.Element => {
                     <Route key={champ.path} path={`/${champ.path}`}>
                         <ChampionshipPage
                             nextMatches={allMatches
-                                .filter((m) => new Date(m.date) > new Date())
+                                .filter((m) => new Date(m.date) >= new Date())
                                 .filter((m) => m.championship === champ.id)}
                             name={champ.name}
                         />
                     </Route>
                 ))}
                 <Route path="/">
-                    <Home allMatches={allMatches.filter((m) => new Date(m.date) > new Date())} />
+                    <Home allMatches={allMatches.filter((m) => new Date(m.date) >= new Date())} />
                 </Route>
             </Switch>
         </Router>

@@ -51,22 +51,24 @@ const getMatches = async (url: string, id: string): Promise<Array<NextMatch>> =>
         let dateRightFormat = '';
         if (month === 'ay') {
             // Means we have a date like 'Today ...'
-            dateRightFormat = new Date().toString();
+            const d = new Date();
+            d.setHours(23); // Put late hour to avoid souci when comparing the same day.
+            dateRightFormat = d.toISOString();
         } else if (month === 'or') {
             // Means we have a date like 'Tomorrow ...'
             const today = new Date();
             const tomorrow = new Date(today);
             tomorrow.setDate(tomorrow.getDate() + 1);
-            dateRightFormat = tomorrow.toString();
+            dateRightFormat = tomorrow.toISOString();
         } else {
-            dateRightFormat = `${month}/${day}/${new Date().getFullYear()}`;
+            dateRightFormat = new Date(`${month}/${day}/${new Date().getFullYear()}`).toISOString();
         }
 
         const match: NextMatch = {
             championship: id,
             homeTeam: teams[i / 3][0],
             awayTeam: teams[i / 3][1],
-            date: new Date(dateRightFormat).toISOString(),
+            date: dateRightFormat,
             oddH: Number(odds[i]),
             oddD: Number(odds[i + 1]),
             oddA: Number(odds[i + 2]),
