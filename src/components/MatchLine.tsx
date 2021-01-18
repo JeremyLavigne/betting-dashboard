@@ -13,7 +13,7 @@ const MatchLine: React.FC<MatchLineProps> = ({ match }): JSX.Element => {
         <div className="match-line">
             <div className="match-line__main">
                 <div className="match-line__title">
-                    <span className="match-line_date">{match.date.toString().substr(0, 10)}</span>
+                    <span className="match-line_date">{match.date.substr(0, 10)}</span>
                 </div>
                 <div className="match-line__body">
                     <span className="match-line__teams">
@@ -26,13 +26,20 @@ const MatchLine: React.FC<MatchLineProps> = ({ match }): JSX.Element => {
             </div>
             {match.betOnH && (
                 <div className="match-line__secondary">
-                    Bet {match.betAmountH} kr on {match.homeTeam}
+                    Bet <span className="match-line__secondary--strong">{match.betAmountH}</span> kr on
+                    <span className="match-line__secondary--strong">{match.homeTeam}</span>
                 </div>
             )}
-            {match.betOnD && <div className="match-line__secondary">Bet {match.betAmountD} kr on Draw</div>}
+            {match.betOnD && (
+                <div className="match-line__secondary">
+                    Bet <span className="match-line__secondary--strong">{match.betAmountD}</span> kr on
+                    <span className="match-line__secondary--strong">Draw</span>
+                </div>
+            )}
             {match.betOnA && (
                 <div className="match-line__secondary">
-                    Bet {match.betAmountA} kr on {match.awayTeam}
+                    Bet <span className="match-line__secondary--strong">{match.betAmountA}</span> kr on
+                    <span className="match-line__secondary--strong">{match.awayTeam}</span>
                 </div>
             )}
         </div>
@@ -42,7 +49,7 @@ const MatchLine: React.FC<MatchLineProps> = ({ match }): JSX.Element => {
 MatchLine.defaultProps = {
     match: {
         championship: 'PL',
-        date: new Date(),
+        date: new Date().toISOString(),
         homeTeam: 'Team 1',
         awayTeam: 'Team 2',
         oddH: 3,

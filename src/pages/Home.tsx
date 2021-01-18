@@ -1,76 +1,44 @@
-import React, { useState, useEffect } from 'react';
-
-import Button from '../components/Button';
-
-import championshipList from '../championshipList';
-import nextMatchesApi from '../api/nextMatches';
-
-import scrap from '../utils/scrap';
-
+import React from 'react';
 import { NextMatch } from '../ts/nextMatch.type';
-import lastUpdateApi from '../api/lastUpdate';
 
-const Home: React.FC = (): JSX.Element => {
-    const [allMatches, setAllMatches] = useState<Array<NextMatch>>([]);
-    const [lastUpdate, setLastUpdate] = useState<Date>(new Date());
+interface HomeProps {
+    allMatches: Array<NextMatch>;
+}
 
-    useEffect(() => {
-        nextMatchesApi.getAll().then((res) => {
-            setAllMatches(res);
-        });
-        lastUpdateApi.getAll().then((res) => {
-            setLastUpdate(res[0].date);
-        });
-    }, []);
+const Home: React.FC<HomeProps> = ({ allMatches }): JSX.Element => {
+    // Variables
+    const numberOfMatches = allMatches.length;
+    const numberOfValues = allMatches.filter((m) => m.betOnA || m.betOnD || m.betOnH).length;
+    const betAmountTotal = Math.round(
+        allMatches.map((m) => m.betAmountH + m.betAmountD + m.betAmountA).reduce((acc, curr) => acc + curr, 0),
+    );
 
-    const handleRefresh = async () => {
-        const matchesPromises = [];
-        for (let i = 0; i < championshipList.length; i += 1) {
-            // Delete
-            nextMatchesApi.deleteAllByChamp(championshipList[i].id);
-            // Fetch
-            matchesPromises.push(scrap(championshipList[i]));
-        }
-
-        // Wait for it
-        const matches = await Promise.all(matchesPromises); // Array<Array<NextMatch>> i.e. one array for each champiponship
-        const matchesAll: Array<NextMatch> = []; // Array<NextMatch> i.e. one array with all matches inside
-
-        for (let i = 0; i < matches.length; i += 1) {
-            // Store
-            nextMatchesApi.createAllForChamp(matches[i]).then(() => matchesAll.concat(matches[i]));
-        }
-
-        // Update variable
-        setAllMatches(matchesAll);
-
-        // Update last update date -  it is a lot of date
-        lastUpdateApi
-            .update({
-                championship: 'All',
-                date: new Date(),
-            })
-            .then((res) => setLastUpdate(res[0].date));
-    };
+    const todaysMatches = allMatches.filter((m) => new Date(m.date).getDate() === new Date().getDate());
+    const numberOfMatchesToday = todaysMatches.length;
+    const numberOfValuesToday = todaysMatches.filter((m) => m.betOnA || m.betOnD || m.betOnH).length;
+    const betAmountTotalToday = Math.round(
+        todaysMatches.map((m) => m.betAmountH + m.betAmountD + m.betAmountA).reduce((acc, curr) => acc + curr, 0),
+    );
 
     return (
         <div className="home-page">
             <h1>Home</h1>
-            <div>
-                Currently : <br />
+
+            <div className="home-page__overview">
+                <h3>Overview</h3>
                 <ul>
-                    <li>{allMatches.length} matches are going to be played</li>
-                    <li>{allMatches.filter((m) => m.betOnA || m.betOnD || m.betOnH).length} values found</li>
+                    <li>{numberOfMatches} matches.</li>
+                    <li>{numberOfValues} values.</li>
+                    <li>{betAmountTotal} Kr to bet.</li>
+                </ul>
+                <h3>Today</h3>
+                <ul>
+                    <li>{numberOfMatchesToday} matches.</li>
+                    <li>{numberOfValuesToday} values.</li>
+                    <li>{betAmountTotalToday} Kr to bet.</li>
                 </ul>
             </div>
-            <div>
-                <Button purpose="refresh" color="yellow" onClick={handleRefresh}>
-                    Refresh
-                </Button>
-                <span className="last_update">
-                    Last update : {lastUpdate.toString().substr(0, 10)} - {lastUpdate.toString().substr(11, 5)}
-                </span>
-            </div>
+
             <div className="home-page__about">
                 <h3>About</h3>
                 <p>
@@ -90,7 +58,7 @@ const Home: React.FC = (): JSX.Element => {
                     The other purpose is to code and apply coding skills, this app is made with React, Typescript,
                     Webpack.
                 </p>
-                <p>It is version 1.0.0, please do not expect too much for now :-)</p>
+                <p>It is version 1.0.2, please do not expect too much for now :-)</p>
             </div>
         </div>
     );

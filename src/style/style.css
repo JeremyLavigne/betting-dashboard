@@ -1,12 +1,18 @@
-.refresh {
+.btn {
   padding: 5px;
   margin: 5px;
-  font-size: medium;
-  border-radius: 10%;
 }
 
-.button-yellow {
+.btn-refresh {
+  font-size: medium;
+  border-radius: 10%;
+  margin-top: 0;
+}
+.btn-refresh--yellow {
   background-color: #fce450;
+}
+.btn-refresh--red {
+  background-color: #ce2418;
 }
 
 .championship-page {
@@ -37,11 +43,6 @@
   padding-top: 10px;
   padding-bottom: 10px;
 }
-.home-page .last_update {
-  font-size: small;
-  color: #c7c7c7;
-  font-style: italic;
-}
 .home-page__about {
   width: 80%;
   display: flex;
@@ -57,6 +58,10 @@
 }
 .home-page__about p {
   width: 100%;
+}
+.home-page__overview {
+  width: 80%;
+  margin: auto;
 }
 
 .match-line {
@@ -99,10 +104,16 @@
   align-items: center;
   margin-left: 20px;
 }
+.match-line__secondary--strong {
+  font-size: larger;
+  font-weight: 600;
+  margin-left: 5px;
+  margin-right: 5px;
+}
 
 .main-menu {
   background: #326f52;
-  min-width: 120px;
+  min-width: 150px;
   width: 15%;
   padding: 5px;
   display: flex;
@@ -123,6 +134,25 @@
 }
 .main-menu .menu-link__home:visited {
   color: white;
+}
+.main-menu .menu-link__values-number {
+  background-color: #fce450;
+  border-radius: 50%;
+  padding: 2px 5px;
+  margin-left: 10px;
+  color: black;
+}
+
+.last-update {
+  display: flex;
+  position: absolute;
+  top: 30px;
+  right: 20px;
+}
+.last-update__text {
+  font-size: small;
+  color: #c7c7c7;
+  font-style: italic;
 }
 
 body {

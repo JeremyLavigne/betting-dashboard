@@ -1,53 +1,35 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 import { NextMatch } from '../ts/nextMatch.type';
-import { ChampionshipPageProps } from '../ts/championship.type';
 
 import MatchLine from '../components/MatchLine';
 
-import nextMatchesApi from '../api/nextMatches';
+interface ChampionshipPageProps {
+    nextMatches: Array<NextMatch>;
+    name: string;
+}
 
 // One page with all upcoming matches for one championship
 // ================================================================================
-const ChampionshipPage: React.FC<ChampionshipPageProps> = (props): JSX.Element => {
-    const [nextMatches, setNextMatches] = useState<Array<NextMatch>>([]);
-    const { champ } = props;
-    const { id, name } = champ;
-
-    useEffect(() => {
-        nextMatchesApi.getAllByChamp(id).then((res) => {
-            setNextMatches(res);
-        });
-    }, [id]);
-
-    console.log(nextMatches);
-
+const ChampionshipPage: React.FC<ChampionshipPageProps> = ({ nextMatches, name }): JSX.Element => {
     return (
         <div className="championship-page">
             <h1>{name}</h1>
             <div className="championship-page__next-matches">
                 <h3>Next matches</h3>
-                {nextMatches.map((m) => (
-                    <MatchLine key={`${m.homeTeam}-${m.date}`} match={m} />
-                ))}
+                {nextMatches
+                    .sort((m1, m2) => new Date(m1.date).getTime() - new Date(m2.date).getTime())
+                    .map((m) => (
+                        <MatchLine key={`${m.homeTeam}-${m.date}`} match={m} />
+                    ))}
             </div>
         </div>
     );
 };
 
 ChampionshipPage.defaultProps = {
-    champ: {
-        id: '',
-        name: '',
-        path: '',
-        country: '',
-        season: '',
-        maxOdd: [],
-        equationsH: [],
-        equationsD: [],
-        equationsA: [],
-        teamsCheck: [],
-    },
+    nextMatches: [],
+    name: '',
 };
 
 export default ChampionshipPage;
