@@ -1,96 +1,35 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 import { NextMatch } from '../ts/nextMatch.type';
-import { ChampionshipPageProps } from '../ts/championship.type';
 
 import MatchLine from '../components/MatchLine';
-import Button from '../components/Button';
 
-import scrap from '../utils/scrap';
-
-import lastUpdateApi from '../api/lastUpdate';
-import nextMatchesApi from '../api/nextMatches';
-
-import '../style/ChampionshipPage.css';
+interface ChampionshipPageProps {
+    nextMatches: Array<NextMatch>;
+    name: string;
+}
 
 // One page with all upcoming matches for one championship
 // ================================================================================
-const ChampionshipPage: React.FC<ChampionshipPageProps> = (props): JSX.Element => {
-    const [nextMatches, setNextMatches] = useState<Array<NextMatch>>([]);
-    const [lastUpdate, setLastUpdate] = useState<Date>(new Date());
-    const [nolastUpdateInDb, setNoLastUpdateInDb] = useState<boolean>(true);
-    const { champ } = props;
-    const { id, name } = champ;
-
-    useEffect(() => {
-        lastUpdateApi.getByChamp(id).then((res) => {
-            if (typeof res[0] !== 'undefined') {
-                setLastUpdate(res[0].date);
-                setNoLastUpdateInDb(false);
-            } else {
-                setNoLastUpdateInDb(true);
-            }
-        });
-        nextMatchesApi.getAllByChamp(id).then((res) => {
-            setNextMatches(res);
-        });
-    }, [id]);
-
-    const handleRefresh = async () => {
-        // Refresh last update
-        lastUpdateApi
-            .updateForChamp({
-                championship: id,
-                date: new Date(),
-            })
-            .then(() => {
-                setLastUpdate(new Date());
-            });
-
-        // Refresh matches - Delete & Re-create
-        nextMatchesApi.deleteAllByChamp(id);
-        const matches = await scrap(champ);
-        nextMatchesApi.createAllForChamp(matches).then((res) => setNextMatches(res));
-    };
-
-    console.log(nextMatches);
-
+const ChampionshipPage: React.FC<ChampionshipPageProps> = ({ nextMatches, name }): JSX.Element => {
     return (
-        <div className="championship_page">
+        <div className="championship-page">
             <h1>{name}</h1>
-            <div>
-                <Button purpose="refresh" color="yellow" onClick={handleRefresh}>
-                    Refresh
-                </Button>
-                {!nolastUpdateInDb && (
-                    <span className="championship_last_update">
-                        Last Update : {lastUpdate.toString().substr(0, 10)} {lastUpdate.toString().substr(11, 5)}
-                    </span>
-                )}
-            </div>
-            <div className="championship_next_matches">
+            <div className="championship-page__next-matches">
                 <h3>Next matches</h3>
-                {nextMatches.map((m) => (
-                    <MatchLine key={`${m.homeTeam}-${m.date}`} match={m} />
-                ))}
+                {nextMatches
+                    .sort((m1, m2) => new Date(m1.date).getTime() - new Date(m2.date).getTime())
+                    .map((m) => (
+                        <MatchLine key={`${m.homeTeam}-${m.date}`} match={m} />
+                    ))}
             </div>
         </div>
     );
 };
 
 ChampionshipPage.defaultProps = {
-    champ: {
-        id: '',
-        name: '',
-        path: '',
-        country: '',
-        season: '',
-        maxOdd: [],
-        equationsH: [],
-        equationsD: [],
-        equationsA: [],
-        teamsCheck: [],
-    },
+    nextMatches: [],
+    name: '',
 };
 
 export default ChampionshipPage;

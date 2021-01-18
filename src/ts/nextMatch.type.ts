@@ -1,7 +1,7 @@
 // Object as expected in database
 export interface NextMatch {
     championship: string;
-    date: Date;
+    date: string;
     homeTeam: string;
     awayTeam: string;
     oddH: number;
@@ -21,7 +21,7 @@ export interface NextMatch {
 // Object type for upcoming matches when adding ratios
 export interface NextMatchWithRatios {
     championship: string;
-    date: Date;
+    date: string;
     homeTeam: string;
     awayTeam: string;
     oddH: number;

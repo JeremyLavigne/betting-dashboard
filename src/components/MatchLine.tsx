@@ -2,8 +2,6 @@ import React from 'react';
 
 import { NextMatch } from '../ts/nextMatch.type';
 
-import '../style/MatchLine.css';
-
 interface MatchLineProps {
     match: NextMatch;
 }
@@ -13,28 +11,35 @@ interface MatchLineProps {
 const MatchLine: React.FC<MatchLineProps> = ({ match }): JSX.Element => {
     return (
         <div className="match-line">
-            <div className="match-line-main">
-                <div className="match-line-title">
-                    <span className="match-line-date">{match.date.toString().substr(0, 10)}</span>
+            <div className="match-line__main">
+                <div className="match-line__title">
+                    <span className="match-line_date">{match.date.substr(0, 10)}</span>
                 </div>
-                <div className="match-line-body">
-                    <span className="match-line-teams">
+                <div className="match-line__body">
+                    <span className="match-line__teams">
                         {match.homeTeam} vs {match.awayTeam}
                     </span>
-                    <span className={`match-line-odd ${match.betOnH && 'match-line-odd-active'}`}>{match.oddH}</span>
-                    <span className={`match-line-odd ${match.betOnD && 'match-line-odd-active'}`}>{match.oddD}</span>
-                    <span className={`match-line-odd ${match.betOnA && 'match-line-odd-active'}`}>{match.oddA}</span>
+                    <span className={`match-line__odd ${match.betOnH && 'match-line__odd--active'}`}>{match.oddH}</span>
+                    <span className={`match-line__odd ${match.betOnD && 'match-line__odd--active'}`}>{match.oddD}</span>
+                    <span className={`match-line__odd ${match.betOnA && 'match-line__odd--active'}`}>{match.oddA}</span>
                 </div>
             </div>
             {match.betOnH && (
-                <div className="match-line-secondary">
-                    Bet {match.betAmountH} kr on {match.homeTeam}
+                <div className="match-line__secondary">
+                    Bet <span className="match-line__secondary--strong">{match.betAmountH}</span> kr on
+                    <span className="match-line__secondary--strong">{match.homeTeam}</span>
                 </div>
             )}
-            {match.betOnD && <div className="match-line-secondary">Bet {match.betAmountD} kr on Draw</div>}
+            {match.betOnD && (
+                <div className="match-line__secondary">
+                    Bet <span className="match-line__secondary--strong">{match.betAmountD}</span> kr on
+                    <span className="match-line__secondary--strong">Draw</span>
+                </div>
+            )}
             {match.betOnA && (
-                <div className="match-line-secondary">
-                    Bet {match.betAmountA} kr on {match.awayTeam}
+                <div className="match-line__secondary">
+                    Bet <span className="match-line__secondary--strong">{match.betAmountA}</span> kr on
+                    <span className="match-line__secondary--strong">{match.awayTeam}</span>
                 </div>
             )}
         </div>
@@ -44,7 +49,7 @@ const MatchLine: React.FC<MatchLineProps> = ({ match }): JSX.Element => {
 MatchLine.defaultProps = {
     match: {
         championship: 'PL',
-        date: new Date(),
+        date: new Date().toISOString(),
         homeTeam: 'Team 1',
         awayTeam: 'Team 2',
         oddH: 3,

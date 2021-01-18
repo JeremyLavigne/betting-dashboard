@@ -17,12 +17,12 @@ const getByChamp = async (champ: string): Promise<Array<LastUpdate>> => {
     return response.data;
 };
 
-const createForChamp = async (lastUpdate: LastUpdate): Promise<Array<LastUpdate>> => {
+const create = async (lastUpdate: LastUpdate): Promise<Array<LastUpdate>> => {
     const response = await Api.post('/', lastUpdate);
     return response.data;
 };
 
-const updateForChamp = async (lastUpdate: LastUpdate): Promise<Array<LastUpdate>> => {
+const update = async (lastUpdate: LastUpdate): Promise<Array<LastUpdate>> => {
     const response = await Api.put('/', lastUpdate);
     return response.data;
 };
@@ -35,7 +35,7 @@ const deleteByChamp = async (champ: string): Promise<string> => {
 export default {
     getAll,
     getByChamp,
-    createForChamp,
-    updateForChamp,
+    create,
+    update,
     deleteByChamp,
 };

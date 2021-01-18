@@ -4,7 +4,7 @@ import { PreviousMatch, MatchFull } from '../../ts/previousMatch.type';
 const defaultMatch = {
     homeTeam: '',
     awayTeam: '',
-    date: new Date(),
+    date: new Date().toISOString(),
     homeTeamGoalsFor: 0,
     awayTeamGoalsFor: 0,
     homeTeamGoalsAgainst: 0,
