@@ -75,12 +75,15 @@ const App: React.FC = (): JSX.Element => {
                 date: new Date().toISOString(),
             })
             .then(() => setLastUpdate(new Date().toISOString()));
+
+        // Force page refresh, waiting for better
+        window.location.reload();
     };
 
     // ---------------------------------------------------------------------------------------
     return (
         <Router>
-            <Navbar />
+            <Navbar allMatches={allMatches.filter((m) => new Date(m.date) > new Date())} />
             <div className="last-update">
                 {refreshStatus !== 'clear' && (
                     <div>

@@ -103,7 +103,7 @@
 
 .main-menu {
   background: #326f52;
-  min-width: 120px;
+  min-width: 150px;
   width: 15%;
   padding: 5px;
   display: flex;
@@ -124,6 +124,13 @@
 }
 .main-menu .menu-link__home:visited {
   color: white;
+}
+.main-menu .menu-link__values-number {
+  background-color: #fce450;
+  border-radius: 50%;
+  padding: 2px 5px;
+  margin-left: 10px;
+  color: black;
 }
 
 .last-update {
