@@ -51,4 +51,5 @@ export interface MatchFull {
     awayTeamPowerRating: number;
     homeTeamPowerRatingAdjustment: number;
     awayTeamPowerRatingAdjustment: number;
+    matchNumber: number;
 }
