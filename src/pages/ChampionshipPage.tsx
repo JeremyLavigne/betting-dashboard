@@ -12,6 +12,7 @@ interface ChampionshipPageProps {
 // One page with all upcoming matches for one championship
 // ================================================================================
 const ChampionshipPage: React.FC<ChampionshipPageProps> = ({ nextMatches, name }): JSX.Element => {
+    console.log(nextMatches);
     return (
         <div className="championship-page">
             <h1>{name}</h1>

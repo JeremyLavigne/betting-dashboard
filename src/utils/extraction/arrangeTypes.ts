@@ -54,6 +54,7 @@ const arrangeTypes = (newMatches: Array<NextMatch>, teamsCheck: Array<Array<stri
             awayTeamPowerRating: 0,
             homeTeamPowerRatingAdjustment: 0,
             awayTeamPowerRatingAdjustment: 0,
+            matchNumber: 1,
         });
     });
 

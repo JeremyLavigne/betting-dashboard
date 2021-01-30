@@ -16,6 +16,7 @@ export interface NextMatch {
     betOnH: boolean;
     betOnD: boolean;
     betOnA: boolean;
+    matchNumber: number;
 }
 
 // Object type for upcoming matches when adding ratios
@@ -39,4 +40,5 @@ export interface NextMatchWithRatios {
     s2GameFormRatio: number;
     s7PowerRatingRatio: number;
     s9PpsRatio: number;
+    matchNumber: number;
 }

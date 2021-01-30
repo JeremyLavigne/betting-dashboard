@@ -5,6 +5,8 @@ const championshipList = [
         path: 'premier-league', // Path for both react-router and 'betexplorer.com'
         country: 'england', // Indicator for both Navbar and 'football-data.co.uk' path
         season: '2021', // Indicator for 'football-data.co.uk' path
+        numberOfMatchSeason: 380,
+        // Method 1 - Values bets
         maxOdd: [4.2, 0, 0], // [ Home, Draw, Away]
         equationsH: [
             [0.01, 0.12, 0.46],
@@ -14,6 +16,18 @@ const championshipList = [
         // * x(ratio) => ax² + bx + c (fair Odd)
         equationsD: [[], [], []], // Empty if no equqtions
         equationsA: [[], [], []],
+        // Method 2 - odd-based
+        fullSeason: [[3.2, 3.5], [], []], // [[minOdd, maxOdd] for Home bet, [..] Draw bet, [..] Away bet]
+        firstHalf: [[], [2.8, 3.2], []],
+        secondHalf: [[], [], [3.2, 3.5]],
+        firstQuarter: [
+            [1.4, 1.7],
+            [3.2, 3.4],
+            [1.8, 2.1],
+        ],
+        secondQuarter: [[2, 2.3], [4, 4.4], []],
+        thirdQuarter: [[2.9, 3.8], [], []],
+        lastQuarter: [[1.4, 1.7], [], []],
         teamsCheck: [
             ['Manchester Utd', 'Man United'],
             ['Sheffield Utd', 'Sheffield United'],
@@ -26,6 +40,7 @@ const championshipList = [
         path: 'championship',
         country: 'england',
         season: '2021',
+        numberOfMatchSeason: 552,
         maxOdd: [0, 5, 0],
         equationsH: [[], [], []],
         equationsD: [
@@ -34,6 +49,13 @@ const championshipList = [
             [-0.01, 0, 0.28],
         ],
         equationsA: [[], [], []],
+        fullSeason: [[], [4.2, 4.4], []],
+        firstHalf: [[3.2, 3.5], [], [1.5, 2.1]],
+        secondHalf: [[], [], [3.3, 3.6]],
+        firstQuarter: [[], [3.4, 3.6], []],
+        secondQuarter: [[2.9, 3.2], [], [2.1, 2.4]],
+        thirdQuarter: [[3.2, 3.5], [], [2.4, 2.7]],
+        lastQuarter: [[], [], [1.8, 2.1]],
         teamsCheck: [
             ['Nottingham', "Nott'm Forest"],
             ['Sheffield Wed', 'Sheffield Weds'],
@@ -45,12 +67,9 @@ const championshipList = [
         path: 'league-one',
         country: 'england',
         season: '2021',
+        numberOfMatchSeason: 552,
         maxOdd: [2.4, 5.6, 3.6],
-        equationsH: [
-            [0.01, 0.06, 0.42],
-            [-0.01, 0.11, 0.44],
-            [-0.02, 0.05, 0.47],
-        ],
+        equationsH: [[], [], []],
         equationsD: [
             [0.02, -0.03, 0.24],
             [0.01, -0.02, 0.25],
@@ -60,6 +79,17 @@ const championshipList = [
             [-0.02, -0.05, 0.32],
             [0, -0.08, 0.31],
             [0.01, -0.07, 0.29],
+        ],
+        fullSeason: [[], [], []],
+        firstHalf: [[3.2, 3.8], [], [2.4, 2.7]],
+        secondHalf: [[2.6, 2.9], [], []],
+        firstQuarter: [[], [3.6, 8], [2.7, 3]],
+        secondQuarter: [[1.7, 2], [], []],
+        thirdQuarter: [[2.9, 3.2], [], [3.6, 3.9]],
+        lastQuarter: [
+            [1.4, 1.7],
+            [3, 3.2],
+            [1.5, 1.8],
         ],
         teamsCheck: [
             ['Bristol Rovers', 'Bristol Rvs'],
@@ -73,6 +103,7 @@ const championshipList = [
         path: 'league-two',
         country: 'england',
         season: '2021',
+        numberOfMatchSeason: 552,
         maxOdd: [2.5, 4.3, 0],
         equationsH: [
             [0.01, 0.09, 0.4],
@@ -85,6 +116,13 @@ const championshipList = [
             [-0.01, -0.01, 0.29],
         ],
         equationsA: [[], [], []],
+        fullSeason: [[3.5, 3.8], [], [3.6, 3.9]],
+        firstHalf: [[], [2.8, 3.2], []],
+        secondHalf: [[3.2, 3.5], [], []],
+        firstQuarter: [[], [], [2.4, 2.7]],
+        secondQuarter: [[], [], [1.8, 2.1]],
+        thirdQuarter: [[], [2.8, 3.2], [2.4, 2.7]],
+        lastQuarter: [[], [], []],
         teamsCheck: [
             ['Crawley', 'Crawley Town'],
             ['Cambridge Utd', 'Cambridge'],
@@ -98,6 +136,7 @@ const championshipList = [
         path: 'laliga',
         country: 'spain',
         season: '2021',
+        numberOfMatchSeason: 380,
         maxOdd: [2.4, 0, 0],
         equationsH: [
             [0.01, 0.11, 0.47],
@@ -106,6 +145,17 @@ const championshipList = [
         ],
         equationsD: [[], [], []],
         equationsA: [[], [], []],
+        fullSeason: [[], [4, 4.2], []],
+        firstHalf: [
+            [2.9, 3.2],
+            [2.8, 3.2],
+            [3.6, 3.9],
+        ],
+        secondHalf: [[3.2, 3.5], [], []],
+        firstQuarter: [[], [3.6, 4], []],
+        secondQuarter: [[2, 2.3], [], []],
+        thirdQuarter: [[2.6, 3.2], [3, 3.2], []],
+        lastQuarter: [[1.7, 2], [], [2.7, 3.9]],
         teamsCheck: [
             ['Celta Vigo', 'Celta'],
             ['Granada CF', 'Granada'],
@@ -120,22 +170,34 @@ const championshipList = [
         path: 'serie-a',
         country: 'italy',
         season: '2021',
+        numberOfMatchSeason: 380,
         maxOdd: [2.6, 5, 2.9],
         equationsH: [
             [0.01, 0.15, 0.43],
             [0.01, 0.16, 0.44],
             [0, 0.14, 0.44],
         ],
-        equationsD: [
-            [-0.03, 0.02, 0.28],
-            [-0.03, -0.01, 0.27],
-            [-0.01, -0.01, 0.26],
-        ],
+        equationsD: [[], [], []],
         equationsA: [
             [0.01, -0.13, 0.3],
             [0.02, -0.16, 0.28],
             [0.01, -0.11, 0.3],
         ],
+        fullSeason: [[], [], []],
+        firstHalf: [
+            [2.3, 2.6],
+            [4.2, 4.4],
+            [2.1, 2.4],
+        ],
+        secondHalf: [[], [], []],
+        firstQuarter: [[1.7, 2], [], [2.4, 2.7]],
+        secondQuarter: [[], [3.2, 3.4], [1.8, 2.1]],
+        thirdQuarter: [
+            [2.9, 3.5],
+            [3.2, 3.4],
+            [1.8, 2.1],
+        ],
+        lastQuarter: [[], [2.8, 3.2], [2.1, 2.4]],
         teamsCheck: [
             ['AS Roma', 'Roma'],
             ['AC Milan', 'Milan'],
@@ -147,14 +209,22 @@ const championshipList = [
         path: 'ligue-1',
         country: 'france',
         season: '2021',
+        numberOfMatchSeason: 380,
         maxOdd: [2.3, 0, 0],
-        equationsH: [
-            [0.02, 0.09, 0.44],
-            [0.01, 0.16, 0.46],
-            [0.02, 0.14, 0.43],
-        ],
+        equationsH: [[], [], []],
         equationsD: [[], [], []],
         equationsA: [[], [], []],
+        fullSeason: [[], [], [2.1, 2.4]],
+        firstHalf: [[], [2.8, 3], []],
+        secondHalf: [[], [], []],
+        firstQuarter: [
+            [2, 2.3],
+            [3.6, 4.2],
+            [2.4, 3],
+        ],
+        secondQuarter: [[2.3, 2.6], [], [1.5, 2.1]],
+        thirdQuarter: [[], [], [3, 3.3]],
+        lastQuarter: [[2.6, 2.9], [], [2.4, 2.7]],
         teamsCheck: [],
     },
     {
@@ -163,6 +233,7 @@ const championshipList = [
         path: 'bundesliga',
         country: 'germany',
         season: '2021',
+        numberOfMatchSeason: 306,
         maxOdd: [2.6, 5.5, 3.4],
         equationsH: [
             [0, 0.11, 0.45],
@@ -179,6 +250,21 @@ const championshipList = [
             [0.02, -0.14, 0.29],
             [0.01, -0.12, 0.3],
         ],
+        fullSeason: [[], [], []],
+        firstHalf: [[3.5, 3.8], [4.2, 4.4], []],
+        secondHalf: [[2.9, 3.5], [], []],
+        firstQuarter: [
+            [2.9, 3.5],
+            [3.6, 4],
+            [3, 3.9],
+        ],
+        secondQuarter: [
+            [2.6, 3.5],
+            [3.6, 4],
+            [3, 3.6],
+        ],
+        thirdQuarter: [[], [4, 4.4], []],
+        lastQuarter: [[2.3, 2.6], [], [1.8, 2.4]],
         teamsCheck: [
             ['Arminia Bielefeld', 'Bielefeld'],
             ['B. Monchengladbach', "M'gladbach"],
@@ -194,6 +280,7 @@ const championshipList = [
         path: 'premiership',
         country: 'scotland',
         season: '2021',
+        numberOfMatchSeason: 208,
         maxOdd: [0, 8, 3.3],
         equationsH: [[], [], []],
         equationsD: [
@@ -206,6 +293,13 @@ const championshipList = [
             [0.01, -0.15, 0.33],
             [0.01, -0.12, 0.33],
         ],
+        fullSeason: [[], [], []],
+        firstHalf: [[], [2.8, 3.2], [1.5, 1.8]],
+        secondHalf: [[2.9, 3.2], [], []],
+        firstQuarter: [[], [], [2.4, 3]],
+        secondQuarter: [[], [], [2.1, 3.3]],
+        thirdQuarter: [[], [3.2, 3.4], [3.3, 3.9]],
+        lastQuarter: [[2.9, 3.8], [], [2.7, 3]],
         teamsCheck: [
             ['Dundee Utd', 'Dundee United'],
             ['St. Mirren', 'St Mirren'],

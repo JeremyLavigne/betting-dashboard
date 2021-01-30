@@ -120,6 +120,7 @@ const getFairOdds = (
             betOnH: matchesWithRatios[i].betOnH,
             betOnD: matchesWithRatios[i].betOnD,
             betOnA: matchesWithRatios[i].betOnA,
+            matchNumber: matchesWithRatios[i].matchNumber,
         });
     }
 

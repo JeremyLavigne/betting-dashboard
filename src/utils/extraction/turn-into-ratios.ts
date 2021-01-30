@@ -38,6 +38,7 @@ const turnIntoRatio = (
             oddH,
             oddD,
             oddA,
+            matchNumber,
         } = transformedNewMatches[i];
 
         if (Number.isNaN(oddH) || Number.isNaN(oddD) || Number.isNaN(oddA)) {
@@ -56,6 +57,7 @@ const turnIntoRatio = (
 
         newMatchesWithRatios.push({
             ...newMatches[i],
+            matchNumber,
             s2GameFormRatio: Math.round(s2 * 1000) / 1000,
             s7PowerRatingRatio: Math.round(s7 * 1000) / 1000,
             s9PpsRatio: Math.round(s9 * 1000) / 1000,

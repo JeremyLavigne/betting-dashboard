@@ -8,9 +8,13 @@ export interface Championship {
     equationsH: Array<Array<number>>;
     equationsD: Array<Array<number>>;
     equationsA: Array<Array<number>>;
+    fullSeason: Array<Array<number>>;
+    firstHalf: Array<Array<number>>;
+    secondHalf: Array<Array<number>>;
+    firstQuarter: Array<Array<number>>;
+    secondQuarter: Array<Array<number>>;
+    thirdQuarter: Array<Array<number>>;
+    lastQuarter: Array<Array<number>>;
     teamsCheck: Array<Array<string>>;
-}
-
-export interface ChampionshipPageProps {
-    champ: Championship;
+    numberOfMatchSeason: number;
 }
