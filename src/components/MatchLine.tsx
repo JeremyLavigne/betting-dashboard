@@ -64,6 +64,7 @@ MatchLine.defaultProps = {
         betOnH: false,
         betOnD: false,
         betOnA: false,
+        matchNumber: 1,
     },
 };
 

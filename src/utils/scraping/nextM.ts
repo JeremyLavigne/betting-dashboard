@@ -82,6 +82,7 @@ const getMatches = async (url: string, id: string): Promise<Array<NextMatch>> =>
             betOnH: false,
             betOnD: false,
             betOnA: false,
+            matchNumber: 1,
         };
         matches.push(match);
     }

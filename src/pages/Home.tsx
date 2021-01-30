@@ -28,13 +28,13 @@ const Home: React.FC<HomeProps> = ({ allMatches }): JSX.Element => {
                 <h3>Overview</h3>
                 <ul>
                     <li>{numberOfMatches} matches.</li>
-                    <li>{numberOfValues} values.</li>
+                    <li>{numberOfValues} bets.</li>
                     <li>{betAmountTotal} Kr to bet.</li>
                 </ul>
                 <h3>Today</h3>
                 <ul>
                     <li>{numberOfMatchesToday} matches.</li>
-                    <li>{numberOfValuesToday} values.</li>
+                    <li>{numberOfValuesToday} bets.</li>
                     <li>{betAmountTotalToday} Kr to bet.</li>
                 </ul>
             </div>

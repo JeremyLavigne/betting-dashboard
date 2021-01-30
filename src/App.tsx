@@ -47,7 +47,7 @@ const App: React.FC = (): JSX.Element => {
         }
     }, [lastUpdate]);
 
-    console.log(allMatches);
+    // console.log(allMatches);
 
     // ---------------------- Deal with Refresh Action ---------------------------------
     const handleRefresh = async () => {
@@ -76,10 +76,13 @@ const App: React.FC = (): JSX.Element => {
                 championship: 'All',
                 date: new Date().toISOString(),
             })
-            .then(() => setLastUpdate(new Date().toISOString()));
+            .then(() => {
+                setLastUpdate(new Date().toISOString());
+                window.location.reload();
+            });
 
         // Force page refresh, waiting for better
-        window.location.reload();
+        // window.location.reload(); Not a good idea, cause is done before the end of the async actions..
     };
 
     // ---------------------------------------------------------------------------------------

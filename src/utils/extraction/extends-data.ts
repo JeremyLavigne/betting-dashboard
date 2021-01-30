@@ -32,6 +32,7 @@ const defaultMatch = {
     awayTeamPowerRating: 20,
     homeTeamPowerRatingAdjustment: 0,
     awayTeamPowerRatingAdjustment: 0,
+    matchNumber: 1,
 };
 
 // Extends original data with more properties - Properties we actually need to calcultate Ratios
@@ -251,6 +252,7 @@ const extendsData = (db: Array<PreviousMatch>): Array<MatchFull> => {
             awayTeamPowerRating,
             homeTeamPowerRatingAdjustment,
             awayTeamPowerRatingAdjustment,
+            matchNumber: i + 1,
         });
     });
 
