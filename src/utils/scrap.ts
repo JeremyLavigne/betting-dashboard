@@ -31,7 +31,7 @@ const scrap = async (props: Championship): Promise<Array<NextMatch>> => {
         numberOfMatchSeason,
     } = props;
 
-    const capital = 100; // Must relocate that at some point
+    const capital = 1000; // Must relocate that at some point
 
     const urlForOldMatches = `https://www.football-data.co.uk/mmz4281/${season}/${id}.csv`;
     const urlForNewMatches = `https://www.betexplorer.com/soccer/${country}/${path}`;
