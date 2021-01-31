@@ -3,10 +3,11 @@ const championshipList = [
         id: 'E0', // Indicator for both DB and 'football-data.co.uk'
         name: 'Premier League', // Title to display on UI
         path: 'premier-league', // Path for both react-router and 'betexplorer.com'
-        country: 'england', // Indicator for both Navbar and 'football-data.co.uk' path
+        country: 'england', // Indicator for both Navbar and 'betexplorer.com' path
         season: '2021', // Indicator for 'football-data.co.uk' path
         numberOfMatchSeason: 380,
         // Method 1 - Values bets
+        minOdd: [1, 0, 0], // [ Home, Draw, Away]
         maxOdd: [4.2, 0, 0], // [ Home, Draw, Away]
         equationsH: [
             [0.01, 0.12, 0.46],
@@ -29,7 +30,7 @@ const championshipList = [
         thirdQuarter: [[2.9, 3.8], [], []],
         lastQuarter: [[1.4, 1.7], [], []],
         teamsCheck: [
-            ['Manchester Utd', 'Man United'],
+            ['Manchester Utd', 'Man United'], // [Betexplorer Name, football-data name]
             ['Sheffield Utd', 'Sheffield United'],
             ['Manchester City', 'Man City'],
         ], // Difference between Betexplorer and football-data team names.
@@ -41,6 +42,7 @@ const championshipList = [
         country: 'england',
         season: '2021',
         numberOfMatchSeason: 552,
+        minOdd: [0, 3, 0],
         maxOdd: [0, 5, 0],
         equationsH: [[], [], []],
         equationsD: [
@@ -68,7 +70,8 @@ const championshipList = [
         country: 'england',
         season: '2021',
         numberOfMatchSeason: 552,
-        maxOdd: [2.4, 5.6, 3.6],
+        minOdd: [0, 3, 1],
+        maxOdd: [0, 5.6, 3.6],
         equationsH: [[], [], []],
         equationsD: [
             [0.02, -0.03, 0.24],
@@ -104,6 +107,7 @@ const championshipList = [
         country: 'england',
         season: '2021',
         numberOfMatchSeason: 552,
+        minOdd: [1, 3, 0],
         maxOdd: [2.5, 4.3, 0],
         equationsH: [
             [0.01, 0.09, 0.4],
@@ -131,12 +135,40 @@ const championshipList = [
         ],
     },
     {
+        id: 'EC',
+        name: 'Conference',
+        path: 'national-league',
+        country: 'england',
+        season: '2021',
+        numberOfMatchSeason: 552,
+        minOdd: [1, 0, 1],
+        maxOdd: [2.4, 0, 3.4],
+        equationsH: [[0.01, 0.1, 0.41], [-0.01, 0.13, 0.44], []],
+        equationsD: [[], [], []],
+        equationsA: [[-0.02, -0.06, 0.34], [0.02, -0.12, 0.29], []],
+        fullSeason: [[], [], []],
+        firstHalf: [[3.5, 3.8], [], [3.6, 3.9]],
+        secondHalf: [[], [4, 4.2], []],
+        firstQuarter: [[], [2.8, 3.2], []],
+        secondQuarter: [[], [], []],
+        thirdQuarter: [[2.6, 2.9], [], [2.7, 3]],
+        lastQuarter: [[], [2.8, 3.2], [1.5, 2.1]],
+        teamsCheck: [
+            ['FC Halifax', 'Halifax'],
+            ['Notts Co', 'Notts County'],
+            ['Solihull Moors', 'Solihull'],
+            ['Dag & Red', 'Dag and Red'],
+            ['Dover', 'Dover Athletic'],
+        ],
+    },
+    {
         id: 'SP1',
         name: 'Liga',
         path: 'laliga',
         country: 'spain',
         season: '2021',
         numberOfMatchSeason: 380,
+        minOdd: [1, 0, 0],
         maxOdd: [2.4, 0, 0],
         equationsH: [
             [0.01, 0.11, 0.47],
@@ -171,7 +203,8 @@ const championshipList = [
         country: 'italy',
         season: '2021',
         numberOfMatchSeason: 380,
-        maxOdd: [2.6, 5, 2.9],
+        minOdd: [1, 0, 1],
+        maxOdd: [2.6, 0, 2.9],
         equationsH: [
             [0.01, 0.15, 0.43],
             [0.01, 0.16, 0.44],
@@ -210,7 +243,8 @@ const championshipList = [
         country: 'france',
         season: '2021',
         numberOfMatchSeason: 380,
-        maxOdd: [2.3, 0, 0],
+        minOdd: [0, 0, 0],
+        maxOdd: [0, 0, 0],
         equationsH: [[], [], []],
         equationsD: [[], [], []],
         equationsA: [[], [], []],
@@ -234,6 +268,7 @@ const championshipList = [
         country: 'germany',
         season: '2021',
         numberOfMatchSeason: 306,
+        minOdd: [1, 3, 1],
         maxOdd: [2.6, 5.5, 3.4],
         equationsH: [
             [0, 0.11, 0.45],
@@ -281,6 +316,7 @@ const championshipList = [
         country: 'scotland',
         season: '2021',
         numberOfMatchSeason: 208,
+        minOdd: [0, 3, 1],
         maxOdd: [0, 8, 3.3],
         equationsH: [[], [], []],
         equationsD: [

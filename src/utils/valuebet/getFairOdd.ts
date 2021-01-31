@@ -87,9 +87,26 @@ const getFairOdds = (
         const fairOddAwayWithS7 = 1 / predictS7A(matchesWithRatios[i].s7PowerRatingRatio);
         const fairOddAwayWithS9 = 1 / predictS9A(matchesWithRatios[i].s9PpsRatio);
 
-        let tempfairOddH = Math.round(((fairOddHomeWithS2 + fairOddHomeWithS7 + fairOddHomeWithS9) / 3) * 100) / 100;
-        let tempfairOddD = Math.round(((fairOddDrawWithS2 + fairOddDrawWithS7 + fairOddDrawWithS9) / 3) * 100) / 100;
-        let tempfairOddA = Math.round(((fairOddAwayWithS2 + fairOddAwayWithS7 + fairOddAwayWithS9) / 3) * 100) / 100;
+        let tempfairOddH = 50;
+        let tempfairOddD = 50;
+        let tempfairOddA = 50;
+
+        if (equationsH[2].length === 0) {
+            // a.k.a There is only two system took in count
+            tempfairOddH = Math.round(((fairOddHomeWithS2 + fairOddHomeWithS7) / 2) * 100) / 100;
+        } else {
+            tempfairOddH = Math.round(((fairOddHomeWithS2 + fairOddHomeWithS7 + fairOddHomeWithS9) / 3) * 100) / 100;
+        }
+        if (equationsD[2].length === 0) {
+            tempfairOddD = Math.round(((fairOddDrawWithS2 + fairOddDrawWithS7) / 2) * 100) / 100;
+        } else {
+            tempfairOddD = Math.round(((fairOddDrawWithS2 + fairOddDrawWithS7 + fairOddDrawWithS9) / 3) * 100) / 100;
+        }
+        if (equationsA[2].length === 0) {
+            tempfairOddA = Math.round(((fairOddAwayWithS2 + fairOddAwayWithS7) / 2) * 100) / 100;
+        } else {
+            tempfairOddA = Math.round(((fairOddAwayWithS2 + fairOddAwayWithS7 + fairOddAwayWithS9) / 3) * 100) / 100;
+        }
 
         // Sometimes, when big odd for example, predict can return a non exploitable value.
         if (Number.isNaN(tempfairOddH) || tempfairOddH < 1) {

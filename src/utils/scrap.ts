@@ -16,6 +16,7 @@ const scrap = async (props: Championship): Promise<Array<NextMatch>> => {
         path,
         season,
         id,
+        minOdd,
         maxOdd,
         equationsA,
         equationsD,
@@ -43,7 +44,7 @@ const scrap = async (props: Championship): Promise<Array<NextMatch>> => {
 
     const newMatchesWithFairOdd = getFairOdd(newMatchesWithRatios, equationsH, equationsD, equationsA);
 
-    const newMatchesWithBetDetails = getBetDetails(newMatchesWithFairOdd, capital, maxOdd);
+    const newMatchesWithBetDetails = getBetDetails(newMatchesWithFairOdd, capital, minOdd, maxOdd);
 
     const newMatchesFull = addOddBasedMethod(
         newMatchesWithBetDetails,
