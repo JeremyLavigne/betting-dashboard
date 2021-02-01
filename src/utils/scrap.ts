@@ -16,6 +16,7 @@ const scrap = async (props: Championship): Promise<Array<NextMatch>> => {
         path,
         season,
         id,
+        minOdd,
         maxOdd,
         equationsA,
         equationsD,
@@ -31,7 +32,7 @@ const scrap = async (props: Championship): Promise<Array<NextMatch>> => {
         numberOfMatchSeason,
     } = props;
 
-    const capital = 100; // Must relocate that at some point
+    const capital = 1000; // Must relocate that at some point
 
     const urlForOldMatches = `https://www.football-data.co.uk/mmz4281/${season}/${id}.csv`;
     const urlForNewMatches = `https://www.betexplorer.com/soccer/${country}/${path}`;
@@ -43,7 +44,7 @@ const scrap = async (props: Championship): Promise<Array<NextMatch>> => {
 
     const newMatchesWithFairOdd = getFairOdd(newMatchesWithRatios, equationsH, equationsD, equationsA);
 
-    const newMatchesWithBetDetails = getBetDetails(newMatchesWithFairOdd, capital, maxOdd);
+    const newMatchesWithBetDetails = getBetDetails(newMatchesWithFairOdd, capital, minOdd, maxOdd);
 
     const newMatchesFull = addOddBasedMethod(
         newMatchesWithBetDetails,

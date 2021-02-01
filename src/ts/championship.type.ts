@@ -4,6 +4,7 @@ export interface Championship {
     path: string;
     country: string;
     season: string;
+    minOdd: Array<number>;
     maxOdd: Array<number>;
     equationsH: Array<Array<number>>;
     equationsD: Array<Array<number>>;
