@@ -32,15 +32,15 @@ const App: React.FC = (): JSX.Element => {
 
     // Deal with Refresh status :
     useEffect(() => {
-        const in3h = new Date(lastUpdate);
-        in3h.setHours(in3h.getHours() + 3);
+        const in1h = new Date(lastUpdate);
+        in1h.setHours(in1h.getHours() + 1);
 
         const in1day = new Date(lastUpdate);
         in1day.setDate(in1day.getDate() + 1);
 
         if (in1day < new Date()) {
             setRefreshStatus('have to');
-        } else if (in3h < new Date()) {
+        } else if (in1h < new Date()) {
             setRefreshStatus('should');
         } else {
             setRefreshStatus('clear');
@@ -107,7 +107,7 @@ const App: React.FC = (): JSX.Element => {
             </div>
             <Switch>
                 {championshipList.map((champ) => (
-                    <Route key={champ.path} path={`/${champ.path}`}>
+                    <Route key={`/${champ.country}/${champ.path}`} path={`/${champ.country}/${champ.path}`}>
                         <ChampionshipPage
                             nextMatches={allMatches
                                 .filter((m) => new Date(m.date) >= new Date())
