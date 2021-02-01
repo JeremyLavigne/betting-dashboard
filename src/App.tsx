@@ -107,7 +107,7 @@ const App: React.FC = (): JSX.Element => {
             </div>
             <Switch>
                 {championshipList.map((champ) => (
-                    <Route key={`/${champ.country}/${champ.path}`} path={`/${champ.country}/${champ.path}`}>
+                    <Route key={`/${champ.country}/${champ.path}`} path={`/${champ.country}-${champ.path}`}>
                         <ChampionshipPage
                             nextMatches={allMatches
                                 .filter((m) => new Date(m.date) >= new Date())

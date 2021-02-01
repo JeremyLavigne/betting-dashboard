@@ -20,8 +20,8 @@ const Navbar: React.FC<NavProps> = ({ allMatches }): JSX.Element => {
                     .filter((m) => m.betOnA || m.betOnD || m.betOnH).length;
 
                 return (
-                    <div key={`/${champ.country}/${champ.path}`} className="menu-link">
-                        <Link className="menu-link menu-link__champ" to={`/${champ.country}/${champ.path}`}>
+                    <div key={`/${champ.country}-${champ.path}`} className="menu-link">
+                        <Link className="menu-link menu-link__champ" to={`/${champ.country}-${champ.path}`}>
                             {champ.name}
                         </Link>
                         {numberOfValues > 0 && <span className="menu-link__values-number">{numberOfValues}</span>}
